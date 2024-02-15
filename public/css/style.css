@@ -242,9 +242,70 @@ h1 {
 
 .dash-content3 {
   margin-top: 30px;
+  padding: 25px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   height: 65vh;
   background-color: #fff;
+}
+
+.list-row {
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, .2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.list-box {
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  position: relative;
+  column-gap: 10px;
+}
+
+.list-box label {
+  color: #000000;
+}
+
+.list-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000000;
+  padding: 5px 15px 5px 5px;
+  cursor: url('../cursor/text2.png'), auto;
+  flex: 1;
+}
+
+.list-box button {
+  padding: 8px 20px 8px 20px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.addBtn {
+  background-color: #EA8426;
+}
+
+.delBtn {
+  background-color: #ff0000;
+}
+
+.addBtn:hover, .delBtn:hover {
+  cursor: url('../cursor/button.png'), auto;
+}
+
+.fa-plus {
+  color: #fff;
+}
+
+.fa-minus {
+  color: #fff;
 }
