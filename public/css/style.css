@@ -256,13 +256,13 @@ h1 {
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   height: 65vh;
   background-color: #fff;
+  overflow: auto;
 }
 
 .list-row {
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, .2); */
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 5px 16px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .list-box {
@@ -284,7 +284,7 @@ h1 {
   border: none;
   outline: none;
   border-radius: 5px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   font-size: 16px;
   color: #000000;
   padding: 5px 15px 5px 5px;
@@ -302,21 +302,21 @@ h1 {
 }
 
 .addBtn {
-  background-color: #EA8426;
+  background-color: #FDB032;
 }
 
 .delBtn {
   background-color: #ff0000;
 }
 
-.addBtn:hover, .delBtn:hover {
+.editBtn {
+  background-color: #00ccff;
+}
+
+.addBtn:hover, .editBtn:hover, .delBtn:hover {
   cursor: url('../cursor/button.png'), auto;
 }
 
-.fa-plus {
-  color: #fff;
-}
-
-.fa-minus {
+.fa-plus, .fa-edit, .fa-trash {
   color: #fff;
 }

@@ -32,11 +32,9 @@
                         <input type="text" class="inputbox" name="name" placeholder="Name">
                         <input type="email" class="inputbox" name="email" placeholder="Email Address">
                         <input type="text" class="inputbox" name="contact" placeholder="Contact Number">
-                        <div>
-                            <button class="addBtn"><i class="fa fa-plus"></i></button>
-                            <button class="delBtn"><i class="fa fa-minus"></i></button>
-                        </div>
+                        <button type="button" class="addBtn"><i class="fa fa-plus"></i></button>
                     </div>
+                    <div class="clone-row"></div>
                 </div>
             </div>
         </form>
