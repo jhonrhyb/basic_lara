@@ -196,7 +196,7 @@ h1 {
   backdrop-filter: blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   border-radius: 10px;
-  padding: 30px 25px;
+  padding: 40px 25px;
   /* font-variant: small-caps; */
 }
 
@@ -240,6 +240,14 @@ h1 {
   user-select: none;
 }
 
+.userInfo {
+  position: absolute;
+}
+
+.userInfo p {
+  font-size: 11pt;
+}
+
 .dash-content3 {
   margin-top: 30px;
   padding: 25px;
@@ -253,7 +261,8 @@ h1 {
 .list-row {
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, .2); */
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 5px 16px;
 }
 
 .list-box {
@@ -263,7 +272,7 @@ h1 {
   justify-content: space-between;
   flex-flow: row wrap;
   position: relative;
-  column-gap: 10px;
+  gap: 10px;
 }
 
 .list-box label {
@@ -274,13 +283,14 @@ h1 {
   background: transparent;
   border: none;
   outline: none;
-  border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   font-size: 16px;
   color: #000000;
   padding: 5px 15px 5px 5px;
   cursor: url('../cursor/text2.png'), auto;
   flex: 1;
+  min-width: 50px;
 }
 
 .list-box button {
@@ -288,6 +298,7 @@ h1 {
   border: none;
   outline: none;
   border-radius: 5px;
+  min-width: 50px;
 }
 
 .addBtn {

@@ -41,7 +41,7 @@
 
 <script type="text/javascript" src="{{  asset('js/jquery-3.1.1.min.js') }}"></script>
 <script type="text/javascript" src="{{  asset('js/sweetalert2.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/apps.js') }}"></script>
 @if (isset($alert))
 <script>
   topAlert.fire({

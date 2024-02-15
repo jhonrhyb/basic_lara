@@ -19,7 +19,12 @@
                 </div>
             </div>
             <div class="dash-content2">
-                <h1>MEMBER LIST</h1>
+                <div>
+                    <h1>MEMBER LIST</h1>
+                </div>
+                <div class="userInfo">
+                    <p>Welcome, {{ "( $username )" }}</p>
+                </div>
             </div>
             <div class="dash-content3">
                 <div class="list-row">
@@ -42,4 +47,4 @@
 
 <script type="text/javascript" src="{{  asset('js/jquery-3.1.1.min.js') }}"></script>
 <script type="text/javascript" src="{{  asset('js/sweetalert2.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/apps.js') }}"></script>

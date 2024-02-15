@@ -10,7 +10,7 @@ class UserAcctController extends Controller
     public function loginUserAcct(Request $request)
     {
         $userInfo = userAcct::where('UserName',$request->username)->where('Password',$request->password)->first();
-        return ($userInfo && ($request->username==$userInfo->UserName && $request->password==$userInfo->Password)) ? view('pages.dashboard') : view('welcome', array('invalid'=>1,'username'=>$request->username));
+        return ($userInfo && ($request->username==$userInfo->UserName && $request->password==$userInfo->Password)) ? view('pages.dashboard', $request) : view('welcome', array('invalid'=>1,'username'=>$request->username));
     }   
      
     public function saveUserAcct(Request $request)
