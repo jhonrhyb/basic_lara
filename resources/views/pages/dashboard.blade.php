@@ -23,7 +23,7 @@
                     <h1>MEMBER LIST</h1>
                 </div>
                 <div class="userInfo">
-                    <p>Welcome, {{ "( $username )" }}</p>
+                    <p>Welcome, ( <b>{{ $username }}</b> )</p>
                 </div>
             </div>
             <div class="dash-content3">

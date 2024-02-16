@@ -313,10 +313,14 @@ h1 {
   background-color: #00ccff;
 }
 
-.addBtn:hover, .editBtn:hover, .delBtn:hover {
+.doneBtn {
+  background-color: #2dd816;
+}
+
+.addBtn:hover, .editBtn:hover, .delBtn:hover, .doneBtn {
   cursor: url('../cursor/button.png'), auto;
 }
 
-.fa-plus, .fa-edit, .fa-trash {
+.fa-plus, .fa-edit, .fa-trash, .fa-check {
   color: #fff;
 }

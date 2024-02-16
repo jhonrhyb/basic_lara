@@ -53,10 +53,29 @@ $(document).ready(() => {
       for (var i = 0; i < 3; i++) inputs[i].style.border = 'none';
     }
     var cloneDIV = $('.list-box:first').clone();
-    cloneDIV.find('input').css({ 'pointer-events': 'none' });
+    cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
     cloneDIV.find('.addBtn').hide();
-    cloneDIV.append('<button type="button" class="editBtn" onclick="this.closest(\'.list-box\').find(\'input\').css({\'pointer-events\': \'auto\'});"><i class="fa fa-edit"></i></button>');
-    cloneDIV.append('<button type="button" class="delBtn" onclick="this.closest(\'.list-box\').remove();"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
+    cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
+    cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
     $('.list-box:first').find('input').val('');
+  });
+
+  $(document).on('click', '.editBtn', (e) => {
+    $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'auto', 'color': '#000' });
+    $(e.currentTarget).hide();
+    $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'none' })
+    $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="doneBtn"><i class="fa fa-check"></i></button>'));
+    $(e.currentTarget).closest('.list-box').find('input:first').focus();
+  });
+
+  $(document).on('click', '.doneBtn', (e) => {
+    $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+    $(e.currentTarget).hide();
+    $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto' })
+    $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
+  })
+
+  $(document).on('click', '.delBtn', (e) => {
+    $(e.currentTarget).closest('.list-box').remove();
   });
 });
