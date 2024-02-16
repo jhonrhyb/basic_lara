@@ -60,13 +60,13 @@ $(document).ready(() => {
 
   $(document).on('click', '.addBtn', (e) => {
     var inputs = $('.list-box:first').find('input');
-    if (inputs[0].value == '' && inputs[1].value == '' && inputs[2].value == '') {
+    if (inputs[0].value == '') {
       topAlert.fire({
         icon: 'warning',
         title: 'Oops!',
-        text: 'Data is required.'
+        text: 'Name is required.'
       });
-      for (var i = 0; i < 3; i++) inputs[i].style.border = '1px solid red';
+      inputs[0].style.border = '1px solid red';
       $(e.currentTarget).closest('.list-box').find('[name=name]').focus();
       return;
     } else if (!validEmail.test(inputs[1].value) && inputs[1].value) {
@@ -80,9 +80,10 @@ $(document).ready(() => {
       });
       return;
     } else {
-      for (var i = 0; i < 3; i++) inputs[i].style.border = 'none';
+      inputs[0].style.border = 'none';
       inputs[0].focus();
     }
+    
     var cloneDIV = $('.list-box:first').clone();
     cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
     cloneDIV.find('.addBtn').hide();
@@ -100,8 +101,18 @@ $(document).ready(() => {
   });
 
   $(document).on('click', '.doneBtn', (e) => {
+    var inputs = $(e.currentTarget).closest('.list-box').find('input');
     var email = $(e.currentTarget).closest('.list-box').find('[name=email]');
-    if (!validEmail.test(email.val()) && email.val()) {
+    if (inputs[0].value == '') {
+      topAlert.fire({
+        icon: 'warning',
+        title: 'Oops!',
+        text: 'Data is required.'
+      });
+      inputs[0].style.border = '1px solid red';
+      $(e.currentTarget).closest('.list-box').find('[name=name]').focus();
+      return;
+    } else if (!validEmail.test(email.val()) && email.val()) {
       topAlert.fire({
         icon: 'warning',
         title: 'Warning!',
@@ -115,6 +126,8 @@ $(document).ready(() => {
       email.css({
         'border': 'none'
       });
+      inputs[0].style.border = 'none';
+      inputs[0].focus();
     }
     $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
     $(e.currentTarget).hide();
