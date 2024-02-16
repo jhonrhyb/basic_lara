@@ -31,7 +31,9 @@
                     <div class="list-box">
                         <input type="text" class="inputbox" name="name" placeholder="Name" autofocus>
                         <input type="email" class="inputbox" name="email" placeholder="Email Address">
-                        <input type="text" class="inputbox" name="contact" placeholder="Contact Number">
+                        <div id="contactDIV">
+                            <span id='contactDefault'><span>+63</span></span><input type="text" class="inputbox" name="contact" placeholder="Contact Number" maxlength="10">
+                        </div>
                         <button type="button" class="addBtn"><i class="fa fa-plus"></i></button>
                     </div>
                     <div class="clone-row"></div>

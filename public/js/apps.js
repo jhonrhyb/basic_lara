@@ -1,16 +1,16 @@
-$(document).ready(() => {
-  const topAlert = Swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  });
+const topAlert = Swal.mixin({
+  toast: true,
+  position: 'top',
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
 
+$(document).ready(() => {
   $('#lock-icon').click(() => {
     if ($('#lock-icon').attr('class') == 'bx bxs-lock') {
       $('#lock-icon').addClass("bxs-lock-open");
@@ -83,7 +83,7 @@ $(document).ready(() => {
       inputs[0].style.border = 'none';
       inputs[0].focus();
     }
-    
+
     var cloneDIV = $('.list-box:first').clone();
     cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
     cloneDIV.find('.addBtn').hide();
@@ -137,5 +137,13 @@ $(document).ready(() => {
 
   $(document).on('click', '.delBtn', (e) => {
     $(e.currentTarget).closest('.list-box').remove();
+  });
+
+  $(document).on('keyup', '[name=contact]', (e) => {
+    var input = $(e.currentTarget);
+    var newVal = input.val().replace(/[^0-9+]/g, '');
+    var plusCount = (input.val().match(/\+/g) || []).length;
+    if (plusCount >= 1) newVal = newVal.replace(/\+/g, '');
+    input.val(newVal);
   });
 });

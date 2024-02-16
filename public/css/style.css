@@ -205,7 +205,7 @@ h1 {
 
 .dash-wrapper {
   margin: 0;
-  width: 50vw;
+  width: 85vw;
   height: 80vh;
   text-align: center;
   background: transparent;
@@ -298,6 +298,7 @@ h1 {
 }
 
 .list-box input {
+  height: 35px;
   background: transparent;
   border: none;
   outline: none;
@@ -308,6 +309,35 @@ h1 {
   padding: 5px 15px 5px 5px;
   cursor: url('../cursor/text2.png'), auto;
   flex: 1;
+  min-width: 50px;
+}
+
+#contactDIV #contactDefault {
+  display: inline-block;
+  width: 15px;
+  background: transparent;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  font-size: 16px;
+  color: #000000;
+  padding: 5px 15px 5px 5px;
+  flex: 1;
+  min-width: 50px;
+}
+
+#contactDIV span span {
+  width: 15px;
+  font-size: 16px;
+  color: #000000;
+  padding: 3px 15px 5px 5px;
+}
+
+#contactDIV span,
+#contactDIV input {
+  height: 35px;
+  width: 140px;
+  display: inline-block;
+  vertical-align: middle;
   min-width: 50px;
 }
 
