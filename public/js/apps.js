@@ -141,9 +141,7 @@ $(document).ready(() => {
 
   $(document).on('keyup', '[name=contact]', (e) => {
     var input = $(e.currentTarget);
-    var newVal = input.val().replace(/[^0-9+]/g, '');
-    var plusCount = (input.val().match(/\+/g) || []).length;
-    if (plusCount >= 1) newVal = newVal.replace(/\+/g, '');
-    input.val(newVal);
+    var newVal = input.val().replace(/[^0-9\.]/g, '');
+    input.val(newVal.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'));
   });
 });
