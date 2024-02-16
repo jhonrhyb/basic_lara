@@ -7,7 +7,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="dash-content3">
                 <div class="list-row">
                     <div class="list-box">
-                        <input type="text" class="inputbox" name="name" placeholder="Name">
+                        <input type="text" class="inputbox" name="name" placeholder="Name" autofocus>
                         <input type="email" class="inputbox" name="email" placeholder="Email Address">
                         <input type="text" class="inputbox" name="contact" placeholder="Contact Number">
                         <button type="button" class="addBtn"><i class="fa fa-plus"></i></button>

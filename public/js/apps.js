@@ -39,18 +39,20 @@ $(document).ready(() => {
     }
   });
 
-  $(document).on('click', '.addBtn', () => {
+  $(document).on('click', '.addBtn', (e) => {
     var inputs = $('.list-box:first').find('input');
     if (inputs[0].value == '' && inputs[1].value == '' && inputs[2].value == '') {
       topAlert.fire({
         icon: 'warning',
         title: 'Oops!',
         text: 'Data is required.'
-      })
+      });
       for (var i = 0; i < 3; i++) inputs[i].style.border = '1px solid red';
+      $(e.currentTarget).closest('.list-box').find('[name=name]').focus();
       return;
     } else {
       for (var i = 0; i < 3; i++) inputs[i].style.border = 'none';
+      inputs[0].focus();
     }
     var cloneDIV = $('.list-box:first').clone();
     cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });

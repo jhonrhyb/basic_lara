@@ -7,6 +7,24 @@
   font-family: 'Poppins', sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #EA8426;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ce3c15;
+}
+
 html {
   cursor: url('../cursor/default.png'), auto;
 }
@@ -105,12 +123,12 @@ h1 {
 }
 
 .bxs-lock:hover {
-  color: #CE3C16;
+  color: #ce3c15;
   cursor: url('../cursor/button.png'), auto;
 }
 
 .bxs-lock-open:hover {
-  color: #CE3C16;
+  color: #ce3c15;
   cursor: url('../cursor/button.png'), auto;
 }
 
@@ -181,7 +199,7 @@ h1 {
 
 .register-link p a:hover {
   text-decoration: underline;
-  color: #CE3C16;
+  color: #ce3c15;
   cursor: url('../cursor/button.png'), auto;
 }
 
@@ -303,24 +321,34 @@ h1 {
 
 .addBtn {
   background-color: #FDB032;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .delBtn {
   background-color: #ff0000;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .editBtn {
   background-color: #00ccff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .doneBtn {
   background-color: #2dd816;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-.addBtn:hover, .editBtn:hover, .delBtn:hover, .doneBtn {
+.addBtn:hover,
+.editBtn:hover,
+.delBtn:hover,
+.doneBtn {
   cursor: url('../cursor/button.png'), auto;
 }
 
-.fa-plus, .fa-edit, .fa-trash, .fa-check {
+.fa-plus,
+.fa-edit,
+.fa-trash,
+.fa-check {
   color: #fff;
 }
