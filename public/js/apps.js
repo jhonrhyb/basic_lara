@@ -39,6 +39,25 @@ $(document).ready(() => {
     }
   });
 
+  var validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  $(document).on('blur', '[name=email]', (e) => {
+    if (!validEmail.test($(e.currentTarget).val()) && $(e.currentTarget).val()) {
+      topAlert.fire({
+        icon: 'warning',
+        title: 'Warning!',
+        text: 'Invalid Email Address.'
+      });
+      $(e.currentTarget).css({
+        'border': '1px solid red'
+      });
+    } else {
+      $(e.currentTarget).css({
+        'border': 'none'
+      });
+    }
+  })
+
   $(document).on('click', '.addBtn', (e) => {
     var inputs = $('.list-box:first').find('input');
     if (inputs[0].value == '' && inputs[1].value == '' && inputs[2].value == '') {
@@ -49,6 +68,16 @@ $(document).ready(() => {
       });
       for (var i = 0; i < 3; i++) inputs[i].style.border = '1px solid red';
       $(e.currentTarget).closest('.list-box').find('[name=name]').focus();
+      return;
+    } else if (!validEmail.test(inputs[1].value) && inputs[1].value) {
+      topAlert.fire({
+        icon: 'warning',
+        title: 'Warning!',
+        text: 'Invalid Email Address.'
+      });
+      $(inputs[1]).css({
+        'border': '1px solid red'
+      });
       return;
     } else {
       for (var i = 0; i < 3; i++) inputs[i].style.border = 'none';
@@ -71,6 +100,22 @@ $(document).ready(() => {
   });
 
   $(document).on('click', '.doneBtn', (e) => {
+    var email = $(e.currentTarget).closest('.list-box').find('[name=email]');
+    if (!validEmail.test(email.val()) && email.val()) {
+      topAlert.fire({
+        icon: 'warning',
+        title: 'Warning!',
+        text: 'Invalid Email Address.'
+      });
+      email.css({
+        'border': '1px solid red'
+      });
+      return;
+    } else {
+      email.css({
+        'border': 'none'
+      });
+    }
     $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
     $(e.currentTarget).hide();
     $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto' })
