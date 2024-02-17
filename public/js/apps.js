@@ -65,6 +65,7 @@ $(document).ready(() => {
   var validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   $(document).on('keypress', '[name=name]', (e) => {
+    $(e.currentTarget).css({'border': 'none'});
     var value = String.fromCharCode(e.which);
     var pattern = new RegExp(/[a-zåäö ]/i);
     return pattern.test(value);
@@ -73,9 +74,9 @@ $(document).ready(() => {
   $(document).on('blur', '[name=email]', (e) => {
     if (!validEmail.test($(e.currentTarget).val()) && $(e.currentTarget).val()) {
       topAlert.fire({
-        icon: 'warning',
-        title: 'Warning!',
-        text: 'Invalid Email Address.'
+        icon: 'error',
+        title: 'Invalid!',
+        text: 'Email Address.'
       });
       $(e.currentTarget).css({
         'border': '1px solid red'
@@ -91,7 +92,7 @@ $(document).ready(() => {
     var inputs = $('.list-box:first').find('input');
     if (inputs[0].value == '') {
       topAlert.fire({
-        icon: 'warning',
+        icon: 'error',
         title: 'Invalid!',
         text: 'Name is required.'
       });
@@ -100,9 +101,9 @@ $(document).ready(() => {
       return;
     } else if (!validEmail.test(inputs[1].value) && inputs[1].value) {
       topAlert.fire({
-        icon: 'warning',
-        title: 'Warning!',
-        text: 'Invalid Email Address.'
+        icon: 'error',
+        title: 'Invalid!',
+        text: 'Email Address.'
       });
       $(inputs[1]).css({
         'border': '1px solid red'
@@ -145,7 +146,7 @@ $(document).ready(() => {
     var email = $(e.currentTarget).closest('.list-box').find('[name=email]');
     if (inputs[0].value == '') {
       topAlert.fire({
-        icon: 'warning',
+        icon: 'error',
         title: 'Invalid!',
         text: 'Data is required.'
       });
@@ -154,9 +155,9 @@ $(document).ready(() => {
       return;
     } else if (!validEmail.test(email.val()) && email.val()) {
       topAlert.fire({
-        icon: 'warning',
-        title: 'Warning!',
-        text: 'Invalid Email Address.'
+        icon: 'error',
+        title: 'Invalid!',
+        text: 'Email Address.'
       });
       email.css({
         'border': '1px solid red'
