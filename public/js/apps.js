@@ -64,6 +64,12 @@ $(document).ready(() => {
 
   var validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+  $(document).on('keypress', '[name=name]', (e) => {
+    var value = String.fromCharCode(e.which);
+    var pattern = new RegExp(/[a-zåäö ]/i);
+    return pattern.test(value);
+  });
+
   $(document).on('blur', '[name=email]', (e) => {
     if (!validEmail.test($(e.currentTarget).val()) && $(e.currentTarget).val()) {
       topAlert.fire({
