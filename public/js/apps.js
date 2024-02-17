@@ -66,7 +66,7 @@ $(document).ready(() => {
 
   $(document).on('keypress', '[name=name]', (e) => {
     $(e.currentTarget).css({'border': 'none'});
-    var value = String.fromCharCode(e.which);
+    var value = String.fromCharCode(e.which ? e.which : e.keyCode);
     var pattern = new RegExp(/[a-zåäö ]/i);
     return pattern.test(value);
   });
@@ -209,9 +209,13 @@ $(document).ready(() => {
     });
   });
 
+  $(document).on('keypress', '[name=contact]', (e) => {
+    var value = String.fromCharCode(e.which ? e.which : e.keyCode);
+    var pattern = /^[0-9]$/;
+    return pattern.test(value);
+  });
+
   $(document).on('keyup', '[name=contact]', (e) => {
-    var input = $(e.currentTarget);
-    var newVal = input.val().replace(/[^0-9\.]/g, '');
-    input.val(newVal.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'));
+    $(e.currentTarget).val($(e.currentTarget).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'));
   });
 });
