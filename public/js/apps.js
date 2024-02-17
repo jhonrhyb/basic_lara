@@ -10,6 +10,18 @@ const topAlert = Swal.mixin({
   }
 });
 
+const loadAlert = Swal.mixin({
+  toast: true,
+  position: 'top',
+  showConfirmButton: false,
+  timer: 500,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+
 const confirmAlert = Swal.mixin({
   toast: true,
   position: 'center',
@@ -95,12 +107,23 @@ $(document).ready(() => {
       inputs[0].focus();
     }
 
-    var cloneDIV = $('.list-box:first').clone();
-    cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
-    cloneDIV.find('.addBtn').hide();
-    cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
-    cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
-    $('.list-box:first').find('input').val('');
+    loadAlert.fire({
+      icon: 'warning',
+      title: ' ',
+      text: 'Please wait a second...'
+    }).then(() => {
+      var cloneDIV = $('.list-box:first').clone();
+      cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+      cloneDIV.find('.addBtn').hide();
+      cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
+      cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
+      $('.list-box:first').find('input').val('');
+      topAlert.fire({
+       icon: 'success',
+        title: 'Success!',
+        text: 'Your data was successfully added.'
+      });
+    });
   });
 
   $(document).on('click', '.editBtn', (e) => {
@@ -140,20 +163,42 @@ $(document).ready(() => {
       inputs[0].style.border = 'none';
       inputs[0].focus();
     }
-    $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
-    $(e.currentTarget).hide();
-    $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
-    $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
-  })
+    loadAlert.fire({
+     icon: 'warning',
+      title: ' ',
+      text: 'Please wait a second...'
+    }).then(() => {
+      $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+      $(e.currentTarget).hide();
+      $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
+      $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
+      topAlert.fire({
+       icon: 'success',
+        title: 'Success!',
+        text: 'Your data was successfully updated.'
+      });
+    });
+  });
 
   $(document).on('click', '.delBtn', (e) => {
     confirmAlert.fire({
       icon: 'warning',
-      title: '',
+      title: ' ',
       text: 'Are you sure you want to delete?'
     }).then((result) => {
       if (result.isConfirmed) {
-        $(e.currentTarget).closest('.list-box').remove();
+        loadAlert.fire({
+          icon: 'warning',
+          title: ' ',
+          text: 'Please wait a second...'
+        }).then(() => {
+          $(e.currentTarget).closest('.list-box').remove();
+          topAlert.fire({
+           icon: 'success',
+            title: 'Success!',
+            text: 'Your data was successfully deleted.'
+          });
+        });
       }
     });
   });
