@@ -272,21 +272,25 @@ h1 {
   width: calc(100% - 50px);
   top: 60px;
   left: 25px;
-  bottom: 5%;
+  bottom: 25px;
   margin-top: 30px;
   padding: 25px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   background-color: #fff;
-  overflow: auto;
 }
 
 .list-row {
-  position: relative;
+  position: absolute;
+  width: calc(100% - 50px);
+  top: 25px;
+  left: 25px;
+  bottom: 25px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  overflow: auto;
 }
 
 .list-box {
