@@ -10,6 +10,17 @@ const topAlert = Swal.mixin({
   }
 });
 
+const confirmAlert = Swal.mixin({
+  toast: true,
+  position: 'center',
+  showConfirmButton: true,
+  showCancelButton: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+
 $(document).ready(() => {
   $('#lock-icon').click(() => {
     if ($('#lock-icon').attr('class') == 'bx bxs-lock') {
@@ -63,7 +74,7 @@ $(document).ready(() => {
     if (inputs[0].value == '') {
       topAlert.fire({
         icon: 'warning',
-        title: 'Oops!',
+        title: 'Invalid!',
         text: 'Name is required.'
       });
       inputs[0].style.border = '1px solid red';
@@ -95,7 +106,7 @@ $(document).ready(() => {
   $(document).on('click', '.editBtn', (e) => {
     $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'auto', 'color': '#000' });
     $(e.currentTarget).hide();
-    $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'none' })
+    $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'none', 'background-color': '#7e7e7e' })
     $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="doneBtn"><i class="fa fa-check"></i></button>'));
     $(e.currentTarget).closest('.list-box').find('input:first').focus();
   });
@@ -106,7 +117,7 @@ $(document).ready(() => {
     if (inputs[0].value == '') {
       topAlert.fire({
         icon: 'warning',
-        title: 'Oops!',
+        title: 'Invalid!',
         text: 'Data is required.'
       });
       inputs[0].style.border = '1px solid red';
@@ -131,12 +142,20 @@ $(document).ready(() => {
     }
     $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
     $(e.currentTarget).hide();
-    $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto' })
+    $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
     $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
   })
 
   $(document).on('click', '.delBtn', (e) => {
-    $(e.currentTarget).closest('.list-box').remove();
+    confirmAlert.fire({
+      icon: 'warning',
+      title: '',
+      text: 'Are you sure you want to delete?'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $(e.currentTarget).closest('.list-box').remove();
+      }
+    });
   });
 
   $(document).on('keyup', '[name=contact]', (e) => {
