@@ -105,9 +105,8 @@ $(document).ready(() => {
         title: 'Invalid!',
         text: 'Email Address.'
       });
-      $(inputs[1]).css({
-        'border': '1px solid red'
-      });
+      inputs[1].style.border = '1px solid red';      
+      $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
       return;
     } else {
       inputs[0].style.border = 'none';
