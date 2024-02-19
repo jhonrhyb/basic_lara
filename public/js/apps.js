@@ -121,7 +121,8 @@ $(document).ready(() => {
       data: {
         'name': inputs[0].value,
         'email': inputs[1].value,
-        'contact': inputs[2].value
+        'contact': inputs[2].value,
+        'user': $('#user').data('user')
       },
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -194,6 +195,7 @@ $(document).ready(() => {
         'name': inputs[0].value,
         'email': inputs[1].value,
         'contact': inputs[2].value,
+        'user': $('#user').data('user'),
         'job': 'edit'
       },
       headers: {

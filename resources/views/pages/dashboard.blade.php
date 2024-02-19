@@ -14,6 +14,7 @@
 <body>
     <div class="dash-wrapper">
         <form action="" method="post">
+            <input type="hidden" id="user" data-user="{{ $user['username'] }}">
             <input type="hidden" id="saveMemberURL" data-route="{{ route('save.Member') }}">
             <input type="hidden" id="deleteMemberURL" data-route="{{ route('delete.Member') }}">
             <div class="dash-content1">

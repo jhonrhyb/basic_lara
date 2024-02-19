@@ -11,7 +11,7 @@ class UserAcctController extends Controller
     public function loginUserAcct(Request $request)
     {
         $userInfo = userAcct::where('UserName', $request->username)->where('Password', $request->password)->first();
-        $data = member::orderBy('created_at', 'desc')->get();
+        $data = member::where('User', $request->username)->orderBy('created_at', 'desc')->get();
         return ($userInfo && ($request->username == $userInfo->UserName && $request->password == $userInfo->Password)) ? view('pages.dashboard', ['data' => $data, 'user' => $request]) : view('welcome', array('invalid' => 1, 'username' => $request->username));
     }
 

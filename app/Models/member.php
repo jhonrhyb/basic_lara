@@ -9,5 +9,5 @@ class member extends Model
 {
     use HasFactory;
     protected $table = 'tblMember';
-    protected $fillable = ['FullName', 'Email', 'Mobile', 'updated_at', 'created_at'];
+    protected $fillable = ['FullName', 'Email', 'Mobile', 'User', 'updated_at', 'created_at'];
 }

@@ -9,11 +9,11 @@ class UserMemberController extends Controller
 {
   public function saveMember(Request $request)
   {
-    $dataName = member::where('FullName', $request->name)->orWhere('Email', $request->email)->count();
+    $dataName = member::where('FullName', $request->name)->where('User', $request->user)->count();
     $dataEmail = member::where('Email', $request->email)->count();
-    $data = member::where('FullName', $request->name)->first();
-    if (($dataName == 0 || $request->job == 'edit') && $dataEmail == 0 || $request->name == $data->FullName) {
-      member::getModel()->updateOrCreate(['FullName' => $request->name], ['FullName' => $request->name, 'Email' => $request->email, 'Mobile' => $request->contact]);
+    $data = member::where('FullName', $request->name)->where('User', $request->user)->first();
+    if (($dataName == 0 || $request->job == 'edit') && (($dataEmail == 0 || $request->email == '') || ($request->name == ($data->FullName ?? 'none') && $request->email == $data->Email))) {
+      member::getModel()->updateOrCreate(['FullName' => $request->name, 'User' => $request->user], ['FullName' => $request->name, 'Email' => $request->email, 'Mobile' => $request->contact, 'User' => $request->user]);
       $response = response()->json(['message' => 'Data inserted successfully', 'code' => 1]);
     } else {
       $response = response()->json(['message' => 'Data alreade exist']);
