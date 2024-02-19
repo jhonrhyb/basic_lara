@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\FronEndController;
+use App\Http\Controllers\retrieveData;
 use App\Http\Controllers\UserAcctController;
+use App\Http\Controllers\UserMemberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +25,7 @@ Route::get('/register', [FronEndController::class, 'register'])->name('register'
 Route::get('/forgotpassword', [FronEndController::class, 'forgotpassword'])->name('forgotpassword');
 Route::post('/login', [UserAcctController::class, 'loginUserAcct'])->name('loginUserAcct');
 Route::post('/save', [UserAcctController::class, 'saveUserAcct'])->name('saveUserAcct');
+Route::post('/saveMember', [UserMemberController::class, 'saveMember'])->name('save.Member');
+Route::post('/deleteMember', [UserMemberController::class, 'deleteMember'])->name('delete.Member');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

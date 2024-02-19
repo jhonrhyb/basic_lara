@@ -65,7 +65,7 @@ $(document).ready(() => {
   var validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   $(document).on('keypress', '[name=name]', (e) => {
-    $(e.currentTarget).css({'border': 'none'});
+    $(e.currentTarget).css({ 'border': 'none' });
     var value = String.fromCharCode(e.which ? e.which : e.keyCode);
     var pattern = new RegExp(/[a-zåäö ]/i);
     return pattern.test(value);
@@ -105,7 +105,7 @@ $(document).ready(() => {
         title: 'Invalid!',
         text: 'Email Address.'
       });
-      inputs[1].style.border = '1px solid red';      
+      inputs[1].style.border = '1px solid red';
       $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
       return;
     } else {
@@ -113,31 +113,38 @@ $(document).ready(() => {
       inputs[0].focus();
     }
 
-    loadAlert.fire({
-      icon: 'warning',
-      title: ' ',
-      text: 'Please wait a second...'
-    }).then(() => {
-      var cloneDIV = $('.list-box:first').clone();
-      cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
-      cloneDIV.find('.addBtn').hide();
-      cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
-      cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
-      $('.list-box:first').find('input').val('');
-      topAlert.fire({
-       icon: 'success',
-        title: 'Success!',
-        text: 'Your data was successfully added.'
-      });
+    var route = $('#saveMemberURL').data('route');
+    $.ajax({
+      url: route,
+      type: 'post',
+      dataType: 'JSON',
+      data: {
+        'name': inputs[0].value,
+        'email': inputs[1].value,
+        'contact': inputs[2].value
+      },
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: () => {
+        var cloneDIV = $('.list-box:first').clone();
+        cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+        cloneDIV.find('.addBtn').hide();
+        cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
+        cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
+        $('.list-box:first').find('input').val('');
+      }
     });
   });
 
   $(document).on('click', '.editBtn', (e) => {
-    $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'auto', 'color': '#000' });
+    $(e.currentTarget).closest('.list-box').find('[name=email],[name=contact]').css({ 'pointer-events': 'auto', 'color': '#000' });
     $(e.currentTarget).hide();
     $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'none', 'background-color': '#7e7e7e' })
     $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="doneBtn"><i class="fa fa-check"></i></button>'));
-    $(e.currentTarget).closest('.list-box').find('input:first').focus();
+    var contact = $(e.currentTarget).closest('.list-box').find('[name=contact]');
+    contact.val(contact.val().replace(/-/g, ''));
+    $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
   });
 
   $(document).on('click', '.doneBtn', (e) => {
@@ -169,20 +176,26 @@ $(document).ready(() => {
       inputs[0].style.border = 'none';
       inputs[0].focus();
     }
-    loadAlert.fire({
-     icon: 'warning',
-      title: ' ',
-      text: 'Please wait a second...'
-    }).then(() => {
-      $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
-      $(e.currentTarget).hide();
-      $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
-      $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
-      topAlert.fire({
-       icon: 'success',
-        title: 'Success!',
-        text: 'Your data was successfully updated.'
-      });
+
+    var route = $('#saveMemberURL').data('route');
+    $.ajax({
+      url: route,
+      type: 'post',
+      dataType: 'JSON',
+      data: {
+        'name': inputs[0].value,
+        'email': inputs[1].value,
+        'contact': inputs[2].value
+      },
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: () => {
+        $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+        $(e.currentTarget).hide();
+        $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
+        $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
+      }
     });
   });
 
@@ -193,17 +206,26 @@ $(document).ready(() => {
       text: 'Are you sure you want to delete?'
     }).then((result) => {
       if (result.isConfirmed) {
-        loadAlert.fire({
-          icon: 'warning',
-          title: ' ',
-          text: 'Please wait a second...'
-        }).then(() => {
-          $(e.currentTarget).closest('.list-box').remove();
-          topAlert.fire({
-           icon: 'success',
-            title: 'Success!',
-            text: 'Your data was successfully deleted.'
-          });
+        var route = $('#deleteMemberURL').data('route');
+        var inputs = $(e.currentTarget).closest('.list-box').find('input');
+        $.ajax({
+          url: route,
+          type: 'post',
+          dataType: 'JSON',
+          data: {
+            'name': inputs[0].value,
+          },
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: () => {
+            $(e.currentTarget).closest('.list-box').remove();
+            topAlert.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Your data was successfully deleted.'
+            });
+          }
         });
       }
     });
@@ -215,7 +237,7 @@ $(document).ready(() => {
     return pattern.test(value);
   });
 
-  $(document).on('keyup', '[name=contact]', (e) => {
+  $(document).on('blur', '[name=contact]', (e) => {
     $(e.currentTarget).val($(e.currentTarget).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'));
   });
 });

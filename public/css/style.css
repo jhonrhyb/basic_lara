@@ -400,3 +400,8 @@ h1 {
 .fa-check {
   color: #fff;
 }
+
+.data-row input {
+  pointer-events: none;
+  color: #999;
+}
