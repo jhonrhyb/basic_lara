@@ -11,7 +11,8 @@ class UserMemberController extends Controller
   {
     $dataName = member::where('FullName', $request->name)->orWhere('Email', $request->email)->count();
     $dataEmail = member::where('Email', $request->email)->count();
-    if (($dataName == 0 || $request->job == 'edit') && $dataEmail == 0) {
+    $data = member::where('FullName', $request->name)->first();
+    if (($dataName == 0 || $request->job == 'edit') && $dataEmail == 0 || $request->name == $data->FullName) {
       member::getModel()->updateOrCreate(['FullName' => $request->name], ['FullName' => $request->name, 'Email' => $request->email, 'Mobile' => $request->contact]);
       $response = response()->json(['message' => 'Data inserted successfully', 'code' => 1]);
     } else {
