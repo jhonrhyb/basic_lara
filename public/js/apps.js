@@ -126,13 +126,21 @@ $(document).ready(() => {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      success: () => {
-        var cloneDIV = $('.list-box:first').clone();
-        cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
-        cloneDIV.find('.addBtn').hide();
-        cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
-        cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
-        $('.list-box:first').find('input').val('');
+      success: (response) => {
+        if (response['code']) {
+          var cloneDIV = $('.list-box:first').clone();
+          cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+          cloneDIV.find('.addBtn').hide();
+          cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
+          cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
+          $('.list-box:first').find('input').val('');
+        } else {
+          topAlert.fire({
+            icon: 'error',
+            title: 'Invalid!',
+            text: 'Duplicate name or email is not allowed!'
+          });
+        }
       }
     });
   });
@@ -185,16 +193,25 @@ $(document).ready(() => {
       data: {
         'name': inputs[0].value,
         'email': inputs[1].value,
-        'contact': inputs[2].value
+        'contact': inputs[2].value,
+        'job': 'edit'
       },
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      success: () => {
-        $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
-        $(e.currentTarget).hide();
-        $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
-        $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
+      success: (response) => {
+        if (response['code']) {
+          $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+          $(e.currentTarget).hide();
+          $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
+          $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
+        } else {
+          topAlert.fire({
+            icon: 'error',
+            title: 'Invalid!',
+            text: 'Duplicate name or email is not allowed!'
+          });
+        }
       }
     });
   });
