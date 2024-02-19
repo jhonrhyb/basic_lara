@@ -207,6 +207,7 @@ h1 {
   margin: 0;
   width: 85vw;
   height: 80vh;
+  position: relative;
   text-align: center;
   background: transparent;
   color: #fff;
@@ -214,7 +215,7 @@ h1 {
   backdrop-filter: blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   border-radius: 10px;
-  padding: 40px 25px;
+  padding: 25px;
   /* font-variant: small-caps; */
 }
 
@@ -267,20 +268,29 @@ h1 {
 }
 
 .dash-content3 {
+  position: absolute;
+  width: calc(100% - 50px);
+  top: 60px;
+  left: 25px;
+  bottom: 25px;
   margin-top: 30px;
   padding: 25px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-  height: 65vh;
   background-color: #fff;
-  overflow: auto;
 }
 
 .list-row {
+  position: absolute;
+  width: calc(100% - 50px);
+  top: 25px;
+  left: 25px;
+  bottom: 25px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  overflow: auto;
 }
 
 .list-box {
@@ -289,7 +299,6 @@ h1 {
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
-  position: relative;
   gap: 10px;
 }
 
@@ -352,29 +361,37 @@ h1 {
 
 .addBtn {
   background-color: #FDB032;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .delBtn {
   background-color: #ff0000;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .editBtn {
   background-color: #00ccff;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .doneBtn {
   background-color: #2dd816;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .addBtn:hover,
 .editBtn:hover,
 .delBtn:hover,
-.doneBtn {
+.doneBtn:hover {
   cursor: url('../cursor/button.png'), auto;
+}
+
+.addBtn:active,
+.editBtn:active,
+.delBtn:active,
+.doneBtn:active {
+  cursor: url('../cursor/button.png'), auto;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
 }
 
 .fa-plus,
