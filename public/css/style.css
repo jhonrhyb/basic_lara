@@ -320,7 +320,7 @@ h1 {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   font-size: 16px;
   color: #000000;
-  padding: 5px 15px 5px 5px;
+  padding: 5px;
   flex: 1;
   min-width: 50px;
 }
@@ -334,8 +334,9 @@ h1 {
 
 #contactDIV span,
 #contactDIV input {
+  padding: 5px;
   height: 35px;
-  width: 140px;
+  width: 115px;
   display: inline-block;
   vertical-align: middle;
   min-width: 50px;
