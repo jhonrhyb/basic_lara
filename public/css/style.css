@@ -379,10 +379,23 @@ h1 {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-.addBtn:hover,
-.editBtn:hover,
-.delBtn:hover,
+.addBtn:hover {
+  background-color: #db921c;
+  cursor: url('../cursor/button.png'), auto;
+}
+
+.editBtn:hover {
+  background-color: #03a7e7;
+  cursor: url('../cursor/button.png'), auto;
+}
+
+.delBtn:hover {
+  background-color: #c02a01;
+  cursor: url('../cursor/button.png'), auto;
+}
+
 .doneBtn:hover {
+  background-color: #26be12e0;
   cursor: url('../cursor/button.png'), auto;
 }
 
