@@ -20,6 +20,11 @@ class UserMemberController extends Controller
     }
     return $response;
   }
+  
+  public function storeImage(Request $request) {
+    member::getModel()->updateOrCreate(['FullName' => $request->name, 'User' => $request->user], ['UserImage' => $request->image]);
+    return response()->json(['message' => 'Data inserted successfully']);
+  }
 
   public function deleteMember(Request $request)
   {

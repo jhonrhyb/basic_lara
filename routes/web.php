@@ -26,6 +26,7 @@ Route::get('/forgotpassword', [FronEndController::class, 'forgotpassword'])->nam
 Route::post('/login', [UserAcctController::class, 'loginUserAcct'])->name('loginUserAcct');
 Route::post('/save', [UserAcctController::class, 'saveUserAcct'])->name('saveUserAcct');
 Route::post('/saveMember', [UserMemberController::class, 'saveMember'])->name('save.Member');
+Route::post('/uploadImg', [UserMemberController::class, 'storeImage'])->name('store.Image');
 Route::post('/deleteMember', [UserMemberController::class, 'deleteMember'])->name('delete.Member');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

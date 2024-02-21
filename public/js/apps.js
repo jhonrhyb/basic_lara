@@ -114,6 +114,31 @@ $(document).ready(() => {
     }
 
     var route = $('#saveMemberURL').data('route');
+    var defaultIMG = $('#defaultImg').data('route');
+    var routeIMG = $('#storeImgURL').data('route');
+    var file = $(e.currentTarget).closest('.list-box').find('#imageFile')[0].files[0];
+
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (f) => {
+        var base64String = f.target.result.split(',')[1];
+        $.ajax({
+          url: routeIMG,
+          type: 'post',
+          data: {
+            'name': inputs[0].value,
+            'user': $('#user').data('user'),
+            'image': base64String
+          },
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: (response) => { }
+        });
+      }
+    }
+
     $.ajax({
       url: route,
       type: 'post',
@@ -130,11 +155,12 @@ $(document).ready(() => {
       success: (response) => {
         if (response['code']) {
           var cloneDIV = $('.list-box:first').clone();
-          cloneDIV.find('input').css({ 'pointer-events': 'none', 'color': '#999' });
+          cloneDIV.find('input,img').css({ 'pointer-events': 'none', 'color': '#999' });
           cloneDIV.find('.addBtn').hide();
           cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
           cloneDIV.append('<button type="button" class="delBtn"><i class="fa fa-trash"></i></button>').appendTo('.clone-row');
           $('.list-box:first').find('input').val('');
+          $('.list-box:first').find('img').attr('src', defaultIMG);
         } else {
           topAlert.fire({
             icon: 'error',
@@ -147,13 +173,11 @@ $(document).ready(() => {
   });
 
   $(document).on('click', '.editBtn', (e) => {
-    $(e.currentTarget).closest('.list-box').find('[name=email],[name=contact]').css({ 'pointer-events': 'auto', 'color': '#000' });
-    $(e.currentTarget).hide();
+    $(e.currentTarget).closest('.list-box').find('[name=email],[name=contact],.imgBox').css({ 'pointer-events': 'auto', 'color': '#000' });
     $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'none', 'background-color': '#7e7e7e' })
     $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="doneBtn"><i class="fa fa-check"></i></button>'));
-    var contact = $(e.currentTarget).closest('.list-box').find('[name=contact]');
-    contact.val(contact.val().replace(/-/g, ''));
     $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
+    $(e.currentTarget).remove();
   });
 
   $(document).on('click', '.doneBtn', (e) => {
@@ -187,6 +211,30 @@ $(document).ready(() => {
     }
 
     var route = $('#saveMemberURL').data('route');
+    var routeIMG = $('#storeImgURL').data('route');
+    var file = $(e.currentTarget).closest('.list-box').find('#imageFile')[0].files[0];
+
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (f) => {
+        var base64String = f.target.result.split(',')[1];
+        $.ajax({
+          url: routeIMG,
+          type: 'post',
+          data: {
+            'name': inputs[0].value,
+            'user': $('#user').data('user'),
+            'image': base64String
+          },
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: (response) => { }
+        });
+      }
+    }
+
     $.ajax({
       url: route,
       type: 'post',
@@ -203,10 +251,10 @@ $(document).ready(() => {
       },
       success: (response) => {
         if (response['code']) {
-          $(e.currentTarget).closest('.list-box').find('input').css({ 'pointer-events': 'none', 'color': '#999' });
-          $(e.currentTarget).hide();
+          $(e.currentTarget).closest('.list-box').find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
           $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
           $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
+          $(e.currentTarget).remove();
         } else {
           topAlert.fire({
             icon: 'error',
@@ -250,6 +298,11 @@ $(document).ready(() => {
     });
   });
 
+  $(document).on('click', '[name=contact]', (e) => {
+    var contact = $(e.currentTarget).closest('.list-box').find('[name=contact]');
+    contact.val(contact.val().replace(/-/g, ''));
+  });
+
   $(document).on('keypress', '[name=contact]', (e) => {
     var value = String.fromCharCode(e.which ? e.which : e.keyCode);
     var pattern = /^[0-9]$/;
@@ -258,5 +311,20 @@ $(document).ready(() => {
 
   $(document).on('blur', '[name=contact]', (e) => {
     $(e.currentTarget).val($(e.currentTarget).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'));
+  });
+
+  $(document).on('click', '.imgBox', (e) => {
+    $(e.currentTarget).closest('.list-box').find('#imageFile').click();
+  });
+
+  $(document).on('change', '#imageFile', (e) => {
+    var file = e.target.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = (f) => {
+        $(e.currentTarget).closest('.list-box').find('.imgBox').attr('src', f.target.result)
+      }
+      reader.readAsDataURL(file);
+    }
   });
 });

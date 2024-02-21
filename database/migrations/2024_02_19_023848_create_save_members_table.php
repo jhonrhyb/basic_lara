@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('tblMember', function (Blueprint $table) {
             $table->id();
-            $table->string('FullName')->nullable();
+            $table->string('FullName');
             $table->string('Email')->nullable();
             $table->string('Mobile')->nullable();
             $table->string('User')->nullable();
+            $table->binary('UserImage')->nullable();
             $table->timestamps();
         });
     }
