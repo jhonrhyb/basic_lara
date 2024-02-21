@@ -175,24 +175,18 @@ $(document).ready(() => {
   $(document).on('click', '.editBtn', (e) => {
     $(e.currentTarget).closest('.list-box').find('[name=email],[name=contact],.imgBox').css({ 'pointer-events': 'auto', 'color': '#000' });
     $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'none', 'background-color': '#7e7e7e' })
-    $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="doneBtn"><i class="fa fa-check"></i></button>'));
+    $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="cancelBtn"><i class="fa fa-ban"></i></button>'));
+    $(e.currentTarget).closest('.list-box').find('.imgLabel').css({'display': 'block'});
     $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
+    $('#prevEmail').val($(e.currentTarget).closest('.list-box').find('[name=email]').val());
+    $('#prevContact').val($(e.currentTarget).closest('.list-box').find('[name=contact]').val());
     $(e.currentTarget).remove();
   });
 
   $(document).on('click', '.doneBtn', (e) => {
     var inputs = $(e.currentTarget).closest('.list-box').find('input');
     var email = $(e.currentTarget).closest('.list-box').find('[name=email]');
-    if (inputs[0].value == '') {
-      topAlert.fire({
-        icon: 'error',
-        title: 'Invalid!',
-        text: 'Data is required.'
-      });
-      inputs[0].style.border = '1px solid red';
-      $(e.currentTarget).closest('.list-box').find('[name=name]').focus();
-      return;
-    } else if (!validEmail.test(email.val()) && email.val()) {
+    if (!validEmail.test(email.val()) && email.val()) {
       topAlert.fire({
         icon: 'error',
         title: 'Invalid!',
@@ -264,6 +258,8 @@ $(document).ready(() => {
         }
       }
     });
+    inputs[0].blur();
+    $(e.currentTarget).closest('.list-box').find('.imgLabel').css({'display': 'none'});
   });
 
   $(document).on('click', '.delBtn', (e) => {
@@ -301,6 +297,7 @@ $(document).ready(() => {
   $(document).on('click', '[name=contact]', (e) => {
     var contact = $(e.currentTarget).closest('.list-box').find('[name=contact]');
     contact.val(contact.val().replace(/-/g, ''));
+    // $(e.currentTarget).select();
   });
 
   $(document).on('keypress', '[name=contact]', (e) => {
@@ -337,5 +334,41 @@ $(document).ready(() => {
       }
       reader.readAsDataURL(file);
     }
+  });
+
+  $(document).on('keyup', '[name=email],[name=contact]', (e) => {
+    var div = $(e.currentTarget).closest('.list-box');
+    var emailVal = div.find('[name=email]').val();
+    var prevEmailVal = $('#prevEmail').val();
+    var contactVal = div.find('[name=contact]').val().replace(/-/g, '');
+    var prevContactVal = $('#prevContact').val().replace(/-/g, '');
+    var thisName = $(e.currentTarget).attr('name');
+    var divClass = '';
+    div.find('.doneBtn').remove();
+    div.find('.editBtn').remove();
+    div.find('.cancelBtn').remove();
+
+    if (e.keyCode==9) div.find('[name=contact]').val(contactVal);
+
+    if (thisName=='email') divClass = $(e.currentTarget).parent().closest('div').attr('class');
+    else divClass = $(e.currentTarget).parent().parent().closest('div').attr('class');
+    
+    if (divClass.indexOf('data-row') != -1) {
+      if ((emailVal!=prevEmailVal || contactVal!=prevContactVal)) {
+        div.children().last().before("<button type='button' class='doneBtn'><i class='fa fa-check'></i>");
+      } else {
+        div.children().last().before("<button type='button' class='cancelBtn'><i class='fa fa-ban'></i>");
+      }
+    }
+  });
+
+  $(document).on('click', '.cancelBtn', (e) => {
+    var div = $(e.currentTarget).closest('.list-box');
+    div.find('.doneBtn').remove();
+    div.find('.editBtn').remove();
+    div.find('.cancelBtn').remove();
+    div.find('[name=email]').val($('#prevEmail').val());
+    div.find('[name=contact]').val($('#prevContact').val());
+    div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
   });
 });

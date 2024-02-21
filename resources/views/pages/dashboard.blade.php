@@ -19,6 +19,8 @@
             <input type="hidden" id="storeImgURL" data-route="{{ route('store.Image') }}">
             <input type="hidden" id="deleteMemberURL" data-route="{{ route('delete.Member') }}">
             <input type="hidden" id="defaultImg" data-route="{{ asset('images/no_image.jpg') }}">
+            <input type="hidden" id="prevEmail">
+            <input type="hidden" id="prevContact">
             <div class="dash-content1">
                 <div class="logout-link">
                     <p><a href="home"><button type="button" class="btn">Logout</button></a></p>
@@ -37,12 +39,12 @@
                     <div class="list-box">
                         <div class="imgDIV">
                             <img src="{{ asset('images/no_image.jpg') }}" class="imgBox">
-                            <span class="imgLabel"><i class="fa fa-arrow-left"> click this box to upload image.</i></span>
+                            <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                         </div>
                         <input type="text" class="inputbox" name="name" placeholder="Name" autofocus>
                         <input type="email" class="inputbox" name="email" placeholder="Email Address">
                         <div id="contactDIV">
-                            <span id='contactDefault'><span>+63</span></span><input type="text" class="inputbox" name="contact" placeholder="Contact #" maxlength="10">
+                            <span id='contactDefault'><span>+63</span></span><input type="text" inputmode="numeric" class="inputbox" name="contact" placeholder="Contact #" maxlength="10">
                         </div>
                         <input type="file" hidden id="imageFile" name="image">
                         <button type="button" class="addBtn"><i class="fa fa-plus"></i></button>
@@ -51,13 +53,13 @@
                     @foreach($data as $row)
                     <div class="list-box data-row">
                         <div class="imgDIV">
-                            <img src="data:image/jpeg;base64,{{ $row['UserImage'] }}" class="imgBox">
-                            <span class="imgLabel"><i class="fa fa-arrow-left"> click this box to upload image.</i></span>
+                            <img src="{{ $row['UserImage'] ? 'data:image/jpeg;base64,'.$row['UserImage'] : asset('images/no_image.jpg') }}" class="imgBox">
+                            <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                         </div>
                         <input type="text" class="inputbox" name="name" value="{{$row['FullName']}}" placeholder="Name" autofocus>
                         <input type="email" class="inputbox" name="email" value="{{$row['Email']}}" placeholder="Email Address">
                         <div id="contactDIV">
-                            <span id='contactDefault'><span>+63</span></span><input type="text" class="inputbox" name="contact" value="{{$row['Mobile']}}" placeholder="Contact #" maxlength="10">
+                            <span id='contactDefault'><span>+63</span></span><input type="text" inputmode="numeric" class="inputbox" name="contact" value="{{$row['Mobile']}}" placeholder="Contact #" maxlength="10">
                         </div>
                         <input type="file" hidden id="imageFile" name="image">
                         <button type="button" class="editBtn"><i class="fa fa-edit"></i></button>
