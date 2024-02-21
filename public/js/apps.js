@@ -319,6 +319,17 @@ $(document).ready(() => {
 
   $(document).on('change', '#imageFile', (e) => {
     var file = e.target.files[0];
+
+    if (!['image/jpg', 'image/jpeg', 'image/png'].find( (val) => { return val==file['type']})) {
+      topAlert.fire({
+        icon: 'error',
+        title: 'Invalid!',
+        text: 'Uploaded file is not a valid image. Only JPG, JPEG, PNG and GIF files are allowed.'
+      });
+      $(e.currentTarget).val('');
+      return;
+    }
+
     if (file) {
       var reader = new FileReader();
       reader.onload = (f) => {
