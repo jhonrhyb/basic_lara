@@ -7,6 +7,15 @@
   font-family: 'Poppins', sans-serif;
 }
 
+::placeholder {
+  color: #999;
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Edge */
+  color: #999;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -454,7 +463,7 @@ h1 {
 .fa-edit,
 .fa-trash,
 .fa-check,
-.fa-ban {
+.fa-undo {
   color: #fff;
 }
 

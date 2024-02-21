@@ -21,6 +21,7 @@
             <input type="hidden" id="defaultImg" data-route="{{ asset('images/no_image.jpg') }}">
             <input type="hidden" id="prevEmail">
             <input type="hidden" id="prevContact">
+            <input type="hidden" id="curContact">
             <div class="dash-content1">
                 <div class="logout-link">
                     <p><a href="home"><button type="button" class="btn">Logout</button></a></p>
@@ -56,10 +57,10 @@
                             <img src="{{ $row['UserImage'] ? 'data:image/jpeg;base64,'.$row['UserImage'] : asset('images/no_image.jpg') }}" class="imgBox">
                             <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                         </div>
-                        <input type="text" class="inputbox" name="name" value="{{$row['FullName']}}" placeholder="Name" autofocus>
-                        <input type="email" class="inputbox" name="email" value="{{$row['Email']}}" placeholder="Email Address">
+                        <input type="text" class="inputbox" name="name" value="{{$row['FullName']}}" placeholder="Name" disabled>
+                        <input type="email" class="inputbox" name="email" value="{{$row['Email']}}" placeholder="Email Address" disabled>
                         <div id="contactDIV">
-                            <span id='contactDefault'><span>+63</span></span><input type="text" inputmode="numeric" class="inputbox" name="contact" value="{{$row['Mobile']}}" placeholder="Contact #" maxlength="10">
+                            <span id='contactDefault'><span>+63</span></span><input type="text" inputmode="numeric" class="inputbox" name="contact" value="{{$row['Mobile']}}" placeholder="Contact #" maxlength="10" disabled>
                         </div>
                         <input type="file" hidden id="imageFile" name="image">
                         <button type="button" class="editBtn"><i class="fa fa-edit"></i></button>

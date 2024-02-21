@@ -108,6 +108,13 @@ $(document).ready(() => {
       inputs[1].style.border = '1px solid red';
       $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
       return;
+    } else if (inputs[2].value.length<10) {
+      topAlert.fire({
+        icon: 'error',
+        title: 'Invalid!',
+        text: 'Contact number must be 10 digits.'
+      });
+      return;
     } else {
       inputs[0].style.border = 'none';
       inputs[0].focus();
@@ -155,6 +162,7 @@ $(document).ready(() => {
       success: (response) => {
         if (response['code']) {
           var cloneDIV = $('.list-box:first').clone();
+          cloneDIV.find('input').attr('disabled', 'disabled');
           cloneDIV.find('input,img').css({ 'pointer-events': 'none', 'color': '#999' });
           cloneDIV.find('.addBtn').hide();
           cloneDIV.append('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>');
@@ -173,9 +181,10 @@ $(document).ready(() => {
   });
 
   $(document).on('click', '.editBtn', (e) => {
+    $(e.currentTarget).closest('.list-box').find('[name=email],[name=contact]').removeAttr('disabled');
     $(e.currentTarget).closest('.list-box').find('[name=email],[name=contact],.imgBox').css({ 'pointer-events': 'auto', 'color': '#000' });
     $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'none', 'background-color': '#7e7e7e' })
-    $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="cancelBtn"><i class="fa fa-ban"></i></button>'));
+    $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="cancelBtn"><i class="fa fa-undo"></i></button>'));
     $(e.currentTarget).closest('.list-box').find('.imgLabel').css({'display': 'block'});
     $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
     $('#prevEmail').val($(e.currentTarget).closest('.list-box').find('[name=email]').val());
@@ -186,6 +195,7 @@ $(document).ready(() => {
   $(document).on('click', '.doneBtn', (e) => {
     var inputs = $(e.currentTarget).closest('.list-box').find('input');
     var email = $(e.currentTarget).closest('.list-box').find('[name=email]');
+    var contact = $(e.currentTarget).closest('.list-box').find('[name=contact]');
     if (!validEmail.test(email.val()) && email.val()) {
       topAlert.fire({
         icon: 'error',
@@ -194,6 +204,13 @@ $(document).ready(() => {
       });
       email.css({
         'border': '1px solid red'
+      });
+      return;
+    } else if (contact.val().length<10) {
+      topAlert.fire({
+        icon: 'error',
+        title: 'Invalid!',
+        text: 'Contact number must be 10 digits.'
       });
       return;
     } else {
@@ -245,6 +262,7 @@ $(document).ready(() => {
       },
       success: (response) => {
         if (response['code']) {
+          $(e.currentTarget).closest('.list-box').find('input').attr('disabled', 'disabled');
           $(e.currentTarget).closest('.list-box').find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
           $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
           $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
@@ -307,6 +325,14 @@ $(document).ready(() => {
   });
 
   $(document).on('blur', '[name=contact]', (e) => {
+    if ($(e.currentTarget).val().length<10) {
+      topAlert.fire({
+        icon: 'error',
+        title: 'Invalid!',
+        text: 'Contact number must be 10 digits.'
+      });
+      return;
+    }
     $(e.currentTarget).val($(e.currentTarget).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'));
   });
 
@@ -318,12 +344,12 @@ $(document).ready(() => {
     var file = e.target.files[0];
 
     if (!['image/jpg', 'image/jpeg', 'image/png'].find( (val) => { return val==file['type']})) {
+      $(e.currentTarget).val('');
       topAlert.fire({
         icon: 'error',
         title: 'Invalid!',
         text: 'Uploaded file is not a valid image. Only JPG, JPEG, PNG and GIF files are allowed.'
       });
-      $(e.currentTarget).val('');
       return;
     }
 
@@ -344,20 +370,20 @@ $(document).ready(() => {
     var prevContactVal = $('#prevContact').val().replace(/-/g, '');
     var thisName = $(e.currentTarget).attr('name');
     var divClass = '';
-    div.find('.doneBtn').remove();
-    div.find('.editBtn').remove();
-    div.find('.cancelBtn').remove();
-
-    if (e.keyCode==9) div.find('[name=contact]').val(contactVal);
+    
+    if (e.keyCode==9 && thisName!='email') div.find('[name=contact]').val(contactVal);
 
     if (thisName=='email') divClass = $(e.currentTarget).parent().closest('div').attr('class');
     else divClass = $(e.currentTarget).parent().parent().closest('div').attr('class');
     
-    if (divClass.indexOf('data-row') != -1) {
+    if (divClass.indexOf('data-row') != -1 && e.keyCode!=9) {
+      div.find('.doneBtn').remove();
+      div.find('.editBtn').remove();
+      div.find('.cancelBtn').remove();
       if ((emailVal!=prevEmailVal || contactVal!=prevContactVal)) {
         div.children().last().before("<button type='button' class='doneBtn'><i class='fa fa-check'></i>");
       } else {
-        div.children().last().before("<button type='button' class='cancelBtn'><i class='fa fa-ban'></i>");
+        div.children().last().before("<button type='button' class='cancelBtn'><i class='fa fa-undo'></i>");
       }
     }
   });
@@ -369,6 +395,9 @@ $(document).ready(() => {
     div.find('.cancelBtn').remove();
     div.find('[name=email]').val($('#prevEmail').val());
     div.find('[name=contact]').val($('#prevContact').val());
+    div.find('input').attr('disabled', 'disabled');
+    div.find('input,img').css({ 'pointer-events': 'none', 'color': '#999' });
+    div.find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
     div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
   });
 });
