@@ -39,7 +39,7 @@
                 <div class="list-row">
                     <div class="list-box">
                         <div class="imgDIV">
-                            <label for="imageFile"><img src="{{ asset('images/no_image.jpg') }}" class="imgBox"></label>
+                            <img src="{{ asset('images/no_image.jpg') }}" class="imgBox" >
                             <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                         </div>
                         <input type="text" class="inputbox" name="name" placeholder="Name" autofocus>
@@ -54,7 +54,7 @@
                     @foreach($data as $row)
                     <div class="list-box data-row">
                         <div class="imgDIV">
-                            <label for="imageFile"><img src="{{ $row['UserImage'] ? 'data:image/jpeg;base64,'.$row['UserImage'] : asset('images/no_image.jpg') }}" class="imgBox"></label>
+                            <img src="{{ $row['UserImage'] ? 'data:image/jpeg;base64,'.$row['UserImage'] : asset('images/no_image.jpg') }}" class="imgBox" >
                             <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                         </div>
                         <input type="text" class="inputbox" name="name" value="{{$row['FullName']}}" placeholder="Name" disabled>
