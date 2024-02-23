@@ -402,26 +402,31 @@ h1 {
 }
 
 .addBtn {
+  width: 50px;
   background-color: #FDB032;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .delBtn {
+  width: 50px;
   background-color: #ff0000;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .editBtn {
+  width: 50px;
   background-color: #00ccff;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .doneBtn {
+  width: 50px;
   background-color: #2dd816;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .cancelBtn {
+  width: 50px;
   background-color: #ff0000;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }

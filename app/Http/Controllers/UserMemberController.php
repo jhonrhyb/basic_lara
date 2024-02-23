@@ -22,7 +22,7 @@ class UserMemberController extends Controller
   }
   
   public function storeImage(Request $request) {
-    member::getModel()->updateOrCreate(['FullName' => $request->name, 'User' => $request->user], ['UserImage' => $request->image]);
+    member::getModel()->updateOrCreate(['FullName' => $request->name, 'User' => $request->user], ['UserImage' => addslashes($request->image)]);
     return response()->json(['message' => 'Data inserted successfully']);
   }
 

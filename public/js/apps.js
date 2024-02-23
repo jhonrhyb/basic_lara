@@ -108,7 +108,7 @@ $(document).ready(() => {
       inputs[1].style.border = '1px solid red';
       $(e.currentTarget).closest('.list-box').find('[name=email]').focus();
       return;
-    } else if (inputs[2].value.length < 10) {
+    } else if (inputs[2].value.length > 0 && inputs[2].value.length < 10) {
       topAlert.fire({
         icon: 'error',
         title: 'Invalid!',
@@ -206,7 +206,7 @@ $(document).ready(() => {
         'border': '1px solid red'
       });
       return;
-    } else if (contact.val().length < 10) {
+    } else if (contact.val().length > 0 && contact.val().length < 10) {
       topAlert.fire({
         icon: 'error',
         title: 'Invalid!',
@@ -266,6 +266,7 @@ $(document).ready(() => {
           $(e.currentTarget).closest('.list-box').find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
           $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
           $(e.currentTarget).closest('.list-box').find('.delBtn').remove();
+          $(e.currentTarget).closest('.list-box').find('.imgLabel').css({ 'display': 'none' });
           $(e.currentTarget).closest('.list-box').append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
           $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
           $(e.currentTarget).remove();
@@ -338,10 +339,6 @@ $(document).ready(() => {
     $(e.currentTarget).val($(e.currentTarget).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'));
   });
 
-  $(document).on('click', '.imgBox', (e) => {
-    $(e.currentTarget).closest('.list-box').find('#imageFile').click();
-  });
-
   $(document).on('change', '#imageFile', (e) => {
     var file = e.target.files[0];
 
@@ -399,6 +396,7 @@ $(document).ready(() => {
     div.find('[name=email]').val($('#prevEmail').val());
     div.find('[name=contact]').val($('#prevContact').val());
     div.find('input').attr('disabled', 'disabled');
+    div.find('.imgLabel').css({ 'display': 'none' });
     div.find('input,img').css({ 'pointer-events': 'none', 'color': '#999' });
     div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
     div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
