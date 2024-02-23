@@ -327,7 +327,7 @@ $(document).ready(() => {
   });
 
   $(document).on('blur', '[name=contact]', (e) => {
-    if ($(e.currentTarget).val().length < 10) {
+    if ($(e.currentTarget).val().length > 0 && $(e.currentTarget).val().length < 10) {
       topAlert.fire({
         icon: 'error',
         title: 'Invalid!',
