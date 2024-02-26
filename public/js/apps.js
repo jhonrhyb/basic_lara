@@ -366,7 +366,7 @@ $(document).ready(() => {
     }
 
     $(e.currentTarget).closest('.list-box').find('.cancelBtn').remove();
-    $(e.currentTarget).closest('.list-box').children().last().before("<button type='button' class='doneBtn'><i class='fa fa-check'></i>");
+    if ($(e.currentTarget).parent().closest('div').attr('class').indexOf('data-row') != -1) $(e.currentTarget).closest('.list-box').children().last().before("<button type='button' class='doneBtn'><i class='fa fa-check'></i>");
   });
 
   $(document).on('keyup', '[name=email],[name=contact]', (e) => {
@@ -408,9 +408,5 @@ $(document).ready(() => {
     div.find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
     div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
     div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
-  });
-
-  $(document).on('hover', '.delBtn', (e) => {
-    $(e.currentTarget).css()
   });
 });
