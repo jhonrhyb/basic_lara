@@ -18,7 +18,7 @@
             <input type="hidden" id="saveMemberURL" data-route="{{ route('save.Member') }}">
             <input type="hidden" id="storeImgURL" data-route="{{ route('store.Image') }}">
             <input type="hidden" id="deleteMemberURL" data-route="{{ route('delete.Member') }}">
-            <input type="hidden" id="defaultImg" data-route="{{ asset('images/upload_image.jpg') }}">
+            <input type="hidden" id="defaultImg" data-route="{{ asset('images/upload_image1.jpg') }}">
             <input type="hidden" id="prevEmail">
             <input type="hidden" id="prevContact">
             <input type="hidden" id="curContact">
@@ -40,7 +40,7 @@
                 <div class="list-row">
                     <div class="list-box">
                         <div class="imgDIV">
-                            <img src="{{ asset('images/upload_image.jpg') }}" class="imgBox">
+                            <img src="{{ asset('images/upload_image1.jpg') }}" class="imgBox">
                             <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                         </div>
                         <input type="text" class="inputbox" name="name" placeholder="Name" autofocus>
@@ -54,7 +54,7 @@
                     @foreach($data as $row)
                     <div class="list-box data-row">
                         <div class="imgDIV">
-                            <img src="{{ $row['UserImage'] ? 'data:image/jpeg;base64,'.$row['UserImage'] : asset('images/upload_image.jpg') }}" class="imgBox">
+                            <img src="{{ $row['UserImage'] ? 'data:image/jpeg;base64,'.$row['UserImage'] : asset('images/upload_image1.jpg') }}" class="imgBox">
                             <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                         </div>
                         <input type="text" class="inputbox" name="name" value="{{$row['FullName']}}" placeholder="Name" disabled>
