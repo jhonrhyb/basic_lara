@@ -26,6 +26,7 @@ const confirmAlert = Swal.mixin({
   toast: true,
   position: 'center',
   showConfirmButton: true,
+  confirmButtonColor: '#ff0000',
   showCancelButton: true,
   didOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -269,7 +270,7 @@ $(document).ready(() => {
           $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
           $(e.currentTarget).closest('.list-box').find('.delBtn').remove();
           $(e.currentTarget).closest('.list-box').find('.cancelBtn').remove();
-          $(e.currentTarget).closest('.list-box').find('.imgLabel').css({'display': 'none'});
+          $(e.currentTarget).closest('.list-box').find('.imgLabel').css({ 'display': 'none' });
           $(e.currentTarget).closest('.list-box').append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
           $(e.currentTarget).closest('.list-box').children().last().before($('<button type="button" class="editBtn"><i class="fa fa-edit"></i></button>'));
           $(e.currentTarget).remove();
