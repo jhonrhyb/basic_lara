@@ -46,6 +46,7 @@ body {
   background: url('../images/bg.jpg');
   background-size: cover;
   background-position: center;
+  --wrapper-load-time: 300ms;
 }
 
 .wrapper {
@@ -59,6 +60,10 @@ body {
   border-radius: 10px;
   padding: 30px 40px;
   /* font-variant: small-caps; */
+  animation: animate1 var(--wrapper-load-time) ease-in;
+  animation-fill-mode: forwards;
+  transform: translateY(-25px);
+  opacity: 0;
 }
 
 .wrapper h1 {
@@ -226,6 +231,10 @@ h1 {
   border-radius: 10px;
   padding: 25px;
   /* font-variant: small-caps; */
+  animation: animate1 var(--wrapper-load-time) ease-in;
+  animation-fill-mode: forwards;
+  transform: translateY(-25px);
+  opacity: 0;
 }
 
 .dash-content1 {
@@ -480,4 +489,28 @@ h1 {
 .data-row .imgLabel{
   display: none;
   color: #999;
+}
+
+@keyframes animate1 {
+  0% {
+    transform: translateY(-25px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    transform: translateX(-250px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

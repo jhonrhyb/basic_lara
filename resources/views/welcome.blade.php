@@ -12,7 +12,7 @@
 
 <body>
   <div class="wrapper">
-    <form action="{{ route('loginUserAcct') }}" method="post">
+    <form action="{{ route('loginUserAcct') }}" method="get">
       @csrf
       <h1>Login</h1>
       <div class="input-box">

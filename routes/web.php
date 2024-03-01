@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::redirect('/home', '/');
 Route::get('/register', [FronEndController::class, 'register'])->name('register');
 Route::get('/forgotpassword', [FronEndController::class, 'forgotpassword'])->name('forgotpassword');
-Route::post('/login', [UserAcctController::class, 'loginUserAcct'])->name('loginUserAcct');
+Route::get('/login', [UserAcctController::class, 'loginUserAcct'])->name('loginUserAcct');
 Route::post('/save', [UserAcctController::class, 'saveUserAcct'])->name('saveUserAcct');
 Route::post('/saveMember', [UserMemberController::class, 'saveMember'])->name('save.Member');
 Route::post('/uploadImg', [UserMemberController::class, 'storeImage'])->name('store.Image');
