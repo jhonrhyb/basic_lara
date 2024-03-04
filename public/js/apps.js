@@ -398,7 +398,7 @@ $(document).on('keyup', '[name=email],[name=contact]', (e) => {
 
   if (thisName == 'email') divClass = $(e.currentTarget).parent().closest('div').attr('class');
   else divClass = $(e.currentTarget).parent().parent().closest('div').attr('class');
-
+  console.log('test');
   if (divClass.indexOf('data-row') != -1 && e.keyCode != 9) {
     div.find('.doneBtn').remove();
     div.find('.editBtn').remove();
@@ -408,24 +408,25 @@ $(document).on('keyup', '[name=email],[name=contact]', (e) => {
       div.children().last().before("<button type='button' class='doneBtn'><i class='fa fa-check'></i>");
       div.append("<button type='button' class='cancelBtn'><i class='fa fa-undo'></i>");
     } else {
-      div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>");
+      // div.find('.delBtn').remove();
+      // div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>");
       div.children().last().before("<button type='button' class='cancelBtn'><i class='fa fa-undo'></i>");
     }
   }
 });
 
 $(document).on('click', '.cancelBtn', (e) => {
-  // var div = $(e.currentTarget).closest('.list-box');
-  // div.find('.doneBtn').remove();
-  // div.find('.editBtn').remove();
-  // div.find('.delBtn').remove();
-  // div.find('.cancelBtn').remove();
-  // div.find('[name=email]').val($('#prevEmail').val());
-  // div.find('[name=contact]').val($('#prevContact').val());
-  // div.find('[name=email],[name=contact]').attr('disabled', 'disabled');
-  // div.find('.imgLabel').css({'display': 'none'});
-  // div.find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
-  // div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
-  // div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
-  location.reload();
+  var div = $(e.currentTarget).closest('.list-box');
+  div.find('.doneBtn').remove();
+  div.find('.editBtn').remove();
+  div.find('.delBtn').remove();
+  div.find('.cancelBtn').remove();
+  div.find('[name=email]').val($('#prevEmail').val());
+  div.find('[name=contact]').val($('#prevContact').val());
+  div.find('[name=email],[name=contact]').attr('disabled', 'disabled');
+  div.find('.imgLabel').css({'display': 'none'});
+  div.find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
+  div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
+  div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
+  // location.reload();
 });
