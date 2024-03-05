@@ -471,5 +471,4 @@ $(document).on('click', '#logoutBtn', (e) => {
   setTimeout(() => {
     location.href = "home";
   }, 300);
-
 });
