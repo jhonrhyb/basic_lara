@@ -425,6 +425,7 @@ $(document).on('click', '.cancelBtn', (e) => {
   div.find('[name=email]').val($('#prevEmail').val());
   div.find('[name=contact]').val($('#prevContact').val());
   div.find('[name=email],[name=contact]').attr('disabled', 'disabled');
+  div.find('[name=email]').css({'border': 'none'});
   div.find('.imgLabel').css({ 'display': 'none' });
   div.find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
   div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")

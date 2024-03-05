@@ -47,7 +47,7 @@ body {
   background-size: cover;
   background-position: center;
   --wrapper-load-time: 300ms;
-  --wrapper-delay-time: 150ms;
+  --wrapper-delay-time: 200ms;
 }
 
 .wrapper {
