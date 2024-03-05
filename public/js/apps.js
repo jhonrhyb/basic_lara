@@ -35,10 +35,10 @@ const confirmAlert = Swal.mixin({
 });
 
 $(document).ready(() => {
-  $('.list-box').each(function (i, div) {
+  $('.data-row').each(function (i, div) {
     i++;
     $(div).css({
-      'animation': "animate2 var(--wrapper-load-time) ease-in calc(var(--wrapper-load-time)*" + i + ")",
+      'animation': "animate2 var(--wrapper-load-time) ease-in calc(var(--wrapper-delay-time)*" + i + ")",
       'animation-fill-mode': "forwards",
       'transform': "translateX(-250px)",
       'opacity': "0",
@@ -278,7 +278,7 @@ $(document).on('click', '.doneBtn', (e) => {
       if (response['code']) {
         $(e.currentTarget).closest('.list-box').find('[name=email],[name=contact]').attr('disabled', 'disabled');
         $(e.currentTarget).closest('.list-box').find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
-        $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' })
+        $(e.currentTarget).closest('.list-box').find('.delBtn').css({ 'pointer-events': 'auto', 'background-color': '#ff0000' });
         $(e.currentTarget).closest('.list-box').find('.delBtn').remove();
         $(e.currentTarget).closest('.list-box').find('.cancelBtn').remove();
         $(e.currentTarget).closest('.list-box').find('.imgLabel').css({ 'display': 'none' });
@@ -408,8 +408,9 @@ $(document).on('keyup', '[name=email],[name=contact]', (e) => {
       div.children().last().before("<button type='button' class='doneBtn'><i class='fa fa-check'></i>");
       div.append("<button type='button' class='cancelBtn'><i class='fa fa-undo'></i>");
     } else {
-      // div.find('.delBtn').remove();
-      // div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>");
+      div.find('.delBtn').remove();
+      div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>");
+      div.find('.delBtn').css({ 'pointer-events': 'none', 'background-color': '#7e7e7e' })
       div.children().last().before("<button type='button' class='cancelBtn'><i class='fa fa-undo'></i>");
     }
   }
@@ -424,7 +425,7 @@ $(document).on('click', '.cancelBtn', (e) => {
   div.find('[name=email]').val($('#prevEmail').val());
   div.find('[name=contact]').val($('#prevContact').val());
   div.find('[name=email],[name=contact]').attr('disabled', 'disabled');
-  div.find('.imgLabel').css({'display': 'none'});
+  div.find('.imgLabel').css({ 'display': 'none' });
   div.find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
   div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
   div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");

@@ -47,6 +47,7 @@ body {
   background-size: cover;
   background-position: center;
   --wrapper-load-time: 300ms;
+  --wrapper-delay-time: 150ms;
 }
 
 .wrapper {
@@ -302,7 +303,7 @@ h1 {
 .list-row {
   position: absolute;
   width: calc(100% - 50px);
-  top: 25px;
+  top: 135px;
   left: 25px;
   bottom: 25px;
   border-radius: 10px;

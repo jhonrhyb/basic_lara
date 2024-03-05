@@ -37,20 +37,20 @@
                 </div>
             </div>
             <div class="dash-content3">
-                <div class="list-row">
-                    <div class="list-box">
-                        <div class="imgDIV">
-                            <img src="{{ asset('images/upload_image1.jpg') }}" class="imgBox">
-                            <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
-                        </div>
-                        <input type="text" class="inputbox" name="name" placeholder="Name" autofocus>
-                        <input type="email" class="inputbox" name="email" placeholder="Email Address">
-                        <div id="contactDIV">
-                            <span id='contactDefault'><span>+63</span></span><input type="text" inputmode="numeric" class="inputbox" name="contact" placeholder="Contact #" maxlength="10">
-                        </div>
-                        <input type="file" hidden id="imageFile" name="image">
-                        <button type="button" class="addBtn"><i class="fa fa-plus"></i></button>
+                <div class="list-box">
+                    <div class="imgDIV">
+                        <img src="{{ asset('images/upload_image1.jpg') }}" class="imgBox">
+                        <span class="imgLabel"><i class="fa fa-arrow-left"> Click this box to upload image.</i></span>
                     </div>
+                    <input type="text" class="inputbox" name="name" placeholder="Name" autofocus>
+                    <input type="email" class="inputbox" name="email" placeholder="Email Address">
+                    <div id="contactDIV">
+                        <span id='contactDefault'><span>+63</span></span><input type="text" inputmode="numeric" class="inputbox" name="contact" placeholder="Contact #" maxlength="10">
+                    </div>
+                    <input type="file" hidden id="imageFile" name="image">
+                    <button type="button" class="addBtn"><i class="fa fa-plus"></i></button>
+                </div>
+                <div class="list-row">
                     @foreach($data as $row)
                     <div class="list-box data-row">
                         <div class="imgDIV">
