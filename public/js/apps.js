@@ -447,3 +447,29 @@ $(document).on('click', '.cancelBtn', (e) => {
   div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
   div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
 });
+
+$(document).on('click', '#logoutBtn', (e) => {
+  e.preventDefault();
+  var divs = $('.data-row').toArray().reverse();
+
+  for (var i = 0; i < divs.length; i++) {
+    $(divs[i]).css({
+      'animation': "animate2-reverse var(--wrapper-load-time) ease-in calc(var(--wrapper-delay-time)*" + i + ")",
+      'animation-fill-mode': "forwards",
+      'transform': "translateX(0)",
+      'opacity': "1",
+    });
+  }
+
+  $('.dash-wrapper').css({
+    'animation': "animate3-reverse var(--wrapper-load-time) ease-in calc(var(--wrapper-delay-time)*" + i + ")",
+    'animation-fill-mode': "forwards",
+    'transform': "rotateY(0)",
+    'opacity': "1",
+  });
+
+  setTimeout(() => {
+    location.href = "home";
+  }, 300);
+
+});

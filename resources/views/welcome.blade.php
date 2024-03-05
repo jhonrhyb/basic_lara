@@ -25,7 +25,7 @@
       </div>
       <div class="remember-forgot">
         <label for="remember">
-          <input type="checkbox" name="remember" id="remember"> <span>Remember me</span>
+          <input hidden type="checkbox" name="remember" id="remember"> <span hidden>Remember me</span>
         </label>
         <a href="forgotpassword">Forgot password?</a>
       </div>

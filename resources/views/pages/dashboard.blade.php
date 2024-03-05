@@ -26,7 +26,7 @@
             <input type="hidden" id="prevImg">
             <div class="dash-content1">
                 <div class="logout-link">
-                    <p><a href="home"><button type="button" class="btn">Logout</button></a></p>
+                    <p><a href="#" ><button type="button" class="btn" id="logoutBtn">Logout</button></a></p>
                 </div>
             </div>
             <div class="dash-content2">
