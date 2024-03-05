@@ -31,4 +31,10 @@ class UserMemberController extends Controller
     member::getModel()->where('FullName', $request->name)->delete();
     return response()->json(['message' => 'Data deleted successfully']);
   }
+
+  public function dataMember(Request $request)
+  {
+    $data = member::where('FullName', $request->name)->where('User', $request->user)->first();
+    return response()->json(['message' => 'Get data successfully', 'data' => $data]);
+  }
 }

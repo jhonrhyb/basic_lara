@@ -28,5 +28,6 @@ Route::post('/save', [UserAcctController::class, 'saveUserAcct'])->name('saveUse
 Route::post('/saveMember', [UserMemberController::class, 'saveMember'])->name('save.Member');
 Route::post('/uploadImg', [UserMemberController::class, 'storeImage'])->name('store.Image');
 Route::post('/deleteMember', [UserMemberController::class, 'deleteMember'])->name('delete.Member');
+Route::post('/dataMember', [UserMemberController::class, 'dataMember'])->name('data.Member');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

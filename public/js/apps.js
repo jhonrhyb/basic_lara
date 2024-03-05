@@ -422,13 +422,28 @@ $(document).on('click', '.cancelBtn', (e) => {
   div.find('.editBtn').remove();
   div.find('.delBtn').remove();
   div.find('.cancelBtn').remove();
-  div.find('[name=email]').val($('#prevEmail').val());
-  div.find('[name=contact]').val($('#prevContact').val());
+
+  var route = $('#getDataMemberURL').data('route');
+  $.ajax({
+    url: route,
+    type: 'post',
+    data: {
+      'name': div.find('[name=name]').val(),
+      'user': $('#user').data('user')
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: (request) => {
+      div.find('[name=email]').val(request.data.Email);
+      div.find('[name=contact]').val(request.data.Mobile);
+    }
+  });
+
   div.find('[name=email],[name=contact]').attr('disabled', 'disabled');
-  div.find('[name=email]').css({'border': 'none'});
+  div.find('[name=email]').css({ 'border': 'none' });
   div.find('.imgLabel').css({ 'display': 'none' });
   div.find('input,.imgBox').css({ 'pointer-events': 'none', 'color': '#999' });
   div.append("<button type='button' class='delBtn'><i class='fa fa-trash'></i>")
   div.children().last().before("<button type='button' class='editBtn'><i class='fa fa-edit'></i>");
-  // location.reload();
 });

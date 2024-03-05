@@ -18,6 +18,7 @@
             <input type="hidden" id="saveMemberURL" data-route="{{ route('save.Member') }}">
             <input type="hidden" id="storeImgURL" data-route="{{ route('store.Image') }}">
             <input type="hidden" id="deleteMemberURL" data-route="{{ route('delete.Member') }}">
+            <input type="hidden" id="getDataMemberURL" data-route="{{ route('data.Member') }}">
             <input type="hidden" id="defaultImg" data-route="{{ asset('images/upload_image1.jpg') }}">
             <input type="hidden" id="prevEmail">
             <input type="hidden" id="prevContact">
