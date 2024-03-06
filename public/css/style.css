@@ -63,7 +63,7 @@ body {
   /* font-variant: small-caps; */
   animation: animate3 var(--wrapper-load-time) ease-in;
   animation-fill-mode: forwards;
-  transform: translateY(-25px);
+  transform: translateY(90deg);
   opacity: 0;
 }
 
@@ -506,7 +506,7 @@ h1 {
 
 @keyframes animate2 {
   0% {
-    transform: translateX(-250px);
+    transform: translateX(-1000px);
     opacity: 0;
   }
 

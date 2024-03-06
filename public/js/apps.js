@@ -40,7 +40,7 @@ $(document).ready(() => {
     $(div).css({
       'animation': "animate2 var(--wrapper-load-time) ease-in calc(var(--wrapper-delay-time)*" + i + ")",
       'animation-fill-mode': "forwards",
-      'transform': "translateX(-250px)",
+      'transform': "translateX(-1000px)",
       'opacity': "0",
     });
   });
@@ -470,5 +470,5 @@ $(document).on('click', '#logoutBtn', (e) => {
 
   setTimeout(() => {
     location.href = "home";
-  }, 300);
+  }, 150);
 });
