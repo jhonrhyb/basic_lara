@@ -468,7 +468,5 @@ $(document).on('click', '#logoutBtn', (e) => {
     'opacity': "1",
   });
 
-  setTimeout(() => {
-    location.href = "home";
-  }, 150);
+  location.href = "home";
 });
