@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
   <div class="wrapper">
     <form id="formLogin" action="{{ route('loginUserAcct') }}" method="get">
@@ -38,7 +37,6 @@
 </body>
 
 </html>
-
 <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/sweetalert2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/apps.js') }}"></script>

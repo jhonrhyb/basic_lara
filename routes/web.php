@@ -29,5 +29,6 @@ Route::post('/saveMember', [UserMemberController::class, 'saveMember'])->name('s
 Route::post('/uploadImg', [UserMemberController::class, 'storeImage'])->name('store.Image');
 Route::post('/deleteMember', [UserMemberController::class, 'deleteMember'])->name('delete.Member');
 Route::post('/dataMember', [UserMemberController::class, 'dataMember'])->name('data.Member');
+Route::post('/resetPassword', [UserAcctController::class, 'resetPassword'])->name('reset.Password');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

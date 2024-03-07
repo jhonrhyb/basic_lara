@@ -11,19 +11,23 @@
 
 <body>
   <div class="wrapper">
-    <form action="" method="post">
+    <form action="{{ route('reset.Password') }}" method="post">
       @csrf
       <h1>Forgot Password</h1>
       <div class="input-box">
-        <input type="text" name="username" id="username" placeholder="Username" required autofocus>
+        <input type="text" name="username" id="username" placeholder="Username" value="{{ $data->username ?? '' }}" required autofocus>
         <i class='bx bxs-user'></i>
       </div>
       <div class="input-box">
-        <input type="password" name="password" id="password" placeholder="New Password" required>
-        <i class='bx bxs-lock' id="lock-icon"></i>
+        <input type="password" name="oldpassword" id="oldpassword" value="{{ $data->oldpassword ?? '' }}" placeholder="Old Password" required>
+        <i class='bx bxs-lock' id="lock-icon-old"></i>
       </div>
       <div class="input-box">
-        <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm New Password" required>
+        <input type="password" name="newpassword" id="newpassword" value="{{ $data->newpassword ?? '' }}" placeholder="New Password" required>
+        <i class='bx bxs-lock' id="lock-icon-new"></i>
+      </div>
+      <div class="input-box">
+        <input type="password" name="confirmpassword" id="confirmpassword"  value="{{ $data->confirmpassword ?? '' }}" placeholder="Confirm New Password" required>
         <i class='bx bxs-lock' id="lock-icon-confirm"></i>
       </div>
       <button type="submit" class="btn">Submit</button>
@@ -33,8 +37,29 @@
     </form>
   </div>
 </body>
+
 </html>
 
 <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/sweetalert2.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/apps.js') }}"></script>
+@if (isset($alert))
+<script>
+  topAlert.fire({
+    icon: 'success',
+    title: 'Success!',
+    text: 'You can now login.'
+  });
+</script>
+@endif
+
+@if (isset($invalid))
+<script>
+  $('#password').focus();
+  topAlert.fire({
+    icon: 'warning',
+    title: 'Oops!',
+    text: 'Invalid credentials.'
+  });
+</script>
+@endif

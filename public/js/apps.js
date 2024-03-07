@@ -59,6 +59,34 @@ $(document).ready(() => {
     }
   });
 
+  $('#lock-icon-old').click(() => {
+    if ($('#lock-icon-old').attr('class') == 'bx bxs-lock') {
+      $('#lock-icon-old').addClass("bxs-lock-open");
+      $('#lock-icon-old').removeClass("bxs-lock");
+      $('#oldpassword').attr('type', 'text');
+      $('.tooltip-text').html("<i class='bx bxs-info-square'></i> click to hide password.");
+    } else {
+      $('#lock-icon-old').addClass("bxs-lock");
+      $('#lock-icon-old').removeClass("bxs-lock-open");
+      $('#oldpassword').attr('type', 'password');
+      $('.tooltip-text').html("<i class='bx bxs-info-square'></i> click to show password.");
+    }
+  });
+
+  $('#lock-icon-new').click(() => {
+    if ($('#lock-icon-new').attr('class') == 'bx bxs-lock') {
+      $('#lock-icon-new').addClass("bxs-lock-open");
+      $('#lock-icon-new').removeClass("bxs-lock");
+      $('#newpassword').attr('type', 'text');
+      $('.tooltip-text').html("<i class='bx bxs-info-square'></i> click to hide password.");
+    } else {
+      $('#lock-icon-new').addClass("bxs-lock");
+      $('#lock-icon-new').removeClass("bxs-lock-open");
+      $('#newpassword').attr('type', 'password');
+      $('.tooltip-text').html("<i class='bx bxs-info-square'></i> click to show password.");
+    }
+  });
+
   $('#lock-icon-confirm').click(() => {
     if ($('#lock-icon-confirm').attr('class') == 'bx bxs-lock') {
       $('#lock-icon-confirm').addClass("bxs-lock-open");
@@ -493,7 +521,7 @@ $(document).on('click', '#register,#login,#forgot_password', (e) => {
   }
 });
 
-$(document).on('submit', '#formLogin', function () {
+$(document).on('submit', '#formLogin', () => {
   $('.wrapper').css({
     'animation': "animate3-reverse var(--wrapper-load-time) ease-in",
     'animation-fill-mode': "forwards",

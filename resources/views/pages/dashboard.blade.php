@@ -26,7 +26,7 @@
             <input type="hidden" id="prevImg">
             <div class="dash-content1">
                 <div class="logout-link">
-                    <p><a href="#" ><button type="button" class="btn" id="logoutBtn">Logout</button></a></p>
+                    <p><a href="#"><button type="button" class="btn" id="logoutBtn">Logout</button></a></p>
                 </div>
             </div>
             <div class="dash-content2">
@@ -52,6 +52,7 @@
                     <button type="button" class="addBtn"><i class="fa fa-plus"></i></button>
                 </div>
                 <div class="list-row">
+                    @if (count($data)>0)
                     @foreach($data as $row)
                     <div class="list-box data-row">
                         <div class="imgDIV">
@@ -69,6 +70,11 @@
                     </div>
                     @endforeach
                 </div>
+                @else
+                <!-- <div class="list-box no-data">
+                    <img src="{{ asset('images/no-data-icon.png') }}">
+                </div> -->
+                @endif
             </div>
         </form>
     </div>

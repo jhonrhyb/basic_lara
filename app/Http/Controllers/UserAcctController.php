@@ -25,4 +25,18 @@ class UserAcctController extends Controller
         $tmp = array('alert' => '1');
         return view('welcome', $tmp);
     }
+
+    public function resetPassword(Request $request)
+    {
+        $response = view('pages.forgotpassword', array('invalid' => '1', 'data' => $request));
+        $userInfo = userAcct::where('UserName', $request->username)->where('Password', $request->oldpassword)->first();
+        if ($userInfo->UserName ?? '' == $request->username && $userInfo->Password ?? '' == $request->oldpassword) {
+            userAcct::getModel()->updateOrCreate(
+                ['UserName' => $request->username, 'Password' => $request->oldpassword],
+                ['Password' => $request->confirmpassword]
+            );
+            $response = view('pages.forgotpassword', array('alert' => '1'));
+        }
+        return $response;
+    }
 }

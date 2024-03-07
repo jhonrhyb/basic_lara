@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbluseracct', function (Blueprint $table) {
-            // $table->id();
+            $table->id();
             $table->string('UserName')->nullable();
             $table->string('Password')->nullable();
             $table->timestamps();

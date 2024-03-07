@@ -9,5 +9,6 @@ class userAcct extends Model
 {
     use HasFactory;
     protected $table = 'tblUserAcct';
+    // protected $primaryKey = 'UserName';
     protected $fillable = ['UserName','Password','updated_at','created_at'];
 }
