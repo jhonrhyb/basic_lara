@@ -28,7 +28,7 @@
       </div>
       <button type="submit" class="btn">Submit</button>
       <div class="register-link">
-        <p>Go back to login page? <a href="home">Click here</a></p>
+        <p>Go back to login page? <a href="#" id="login">Click here</a></p>
       </div>
     </form>
   </div>

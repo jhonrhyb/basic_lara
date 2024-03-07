@@ -470,3 +470,34 @@ $(document).on('click', '#logoutBtn', (e) => {
 
   location.href = "home";
 });
+
+$(document).on('click', '#register,#login,#forgot_password', (e) => {
+  e.preventDefault();
+  $('.wrapper').css({
+    'animation': "animate3-reverse var(--wrapper-load-time) ease-in",
+    'animation-fill-mode': "forwards",
+    'transform': "rotateY(0)",
+    'opacity': "1",
+  });
+
+  switch ($(e.currentTarget).attr('id')) {
+    case 'forgot_password':
+      location.href = 'forgotpassword';
+      break;
+    case 'register':
+      location.href = 'register';
+      break;
+    default:
+      location.href = 'home';
+      break;
+  }
+});
+
+$(document).on('submit', '#formLogin', function () {
+  $('.wrapper').css({
+    'animation': "animate3-reverse var(--wrapper-load-time) ease-in",
+    'animation-fill-mode': "forwards",
+    'transform': "rotateY(0)",
+    'opacity': "1",
+  });
+});

@@ -12,7 +12,7 @@
 
 <body>
   <div class="wrapper">
-    <form action="{{ route('loginUserAcct') }}" method="get">
+    <form id="formLogin" action="{{ route('loginUserAcct') }}" method="get">
       @csrf
       <h1>Login</h1>
       <div class="input-box">
@@ -27,11 +27,11 @@
         <label for="remember">
           <input hidden type="checkbox" name="remember" id="remember"> <span hidden>Remember me</span>
         </label>
-        <a href="forgotpassword">Forgot password?</a>
+        <a href="#" id="forgot_password">Forgot password?</a>
       </div>
       <button type="submit" class="btn">Login</button>
       <div class="register-link">
-        <p>Don't have an account? <a href="register">Register</a></p>
+        <p>Don't have an account? <a href="#" id="register">Register</a></p>
       </div>
     </form>
   </div>

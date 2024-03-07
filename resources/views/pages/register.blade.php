@@ -28,7 +28,7 @@
       </div>
       <button type="submit" class="btn">Submit</button>
       <div class="register-link">
-        <p>Do you have an account? <a href="home">Login</a></p>
+        <p>Do you have an account? <a href="#" id="login">Login</a></p>
       </div>
     </form>
   </div>
