@@ -10,21 +10,6 @@ const topAlert = Swal.mixin({
   }
 });
 
-const confirmAlert2 = Swal.mixin({
-  toast: true,
-  position: 'top',
-  showConfirmButton: false,
-  showConfirmButton: true,
-  confirmButtonColor: '#EA8426',
-  showCancelButton: false,
-  allowEscapeKey: false,
-  allowOutsideClick: false,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-});
-
 const loadAlert = Swal.mixin({
   toast: true,
   position: 'top',
@@ -578,10 +563,14 @@ $(document).on('click', '#verfiyEmail', (e) => {
       if (timer2 == '0:00') {
         clearInterval(interval);
         $('#emailConfirm').hide();
-        confirmAlert2.fire({
+        Swal.fire({
           icon: 'warning',
           title: 'Oops!',
-          text: 'Your time is up, please verify again.'
+          text: 'Your time is up, please verify again.',
+          showConfirmButton: true,
+          confirmButtonColor: '#EA8426',
+          allowEscapeKey: false,
+          allowOutsideClick: false,
         }).then((result) => {
           if (result.isConfirmed) $('.otp-wrapper').css({ 'display': 'none' });      
         });
