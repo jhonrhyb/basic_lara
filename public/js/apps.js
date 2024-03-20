@@ -563,7 +563,7 @@ $(document).on('click', '#verfiyEmail', (e) => {
   } else {
     const timerSpan = $(e.currentTarget).parent().parent().parent().parent().parent().find('.otp-wrapper').find('.otp-container').find('span');
     $(timerSpan).html('3:00');
-    var timer2 = "0:05";
+    var timer2 = "3:00";
     var interval = setInterval(function() {
       var timer = timer2.split(':');
       var minutes = parseInt(timer[0], 10);
