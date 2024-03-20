@@ -34,6 +34,8 @@ const confirmAlert = Swal.mixin({
   }
 });
 
+const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 $(document).ready(() => {
   $('.data-row').each(function (i, div) {
     i++;
@@ -101,8 +103,6 @@ $(document).ready(() => {
     }
   });
 });
-
-var validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 $(document).on('keypress', '[name=name]', (e) => {
   $(e.currentTarget).css({ 'border': 'none' });
@@ -528,4 +528,17 @@ $(document).on('submit', '#formLogin', () => {
     'transform': "rotateY(0)",
     'opacity': "1",
   });
+});
+
+$(document).on('keyup', '.otp-input', (e) => {
+  if (e.key === 'Backspace') $(e.currentTarget).prev().focus();
+  else if ($(e.currentTarget).val() != '') $(e.currentTarget).next().focus();
+});
+
+$(document).on('keyup', '#emailReg', (e) => {
+  if (validEmail.test($(e.currentTarget).val()) && $(e.currentTarget).val()) {
+    $('.otp-wrapper').css({ 'display': 'flex' });
+  } else {
+    $('.otp-wrapper').css({ 'display': 'none' });
+  }
 });

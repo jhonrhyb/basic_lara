@@ -27,7 +27,7 @@
         <i class='bx bxs-lock' id="lock-icon-new"></i>
       </div>
       <div class="input-box">
-        <input type="password" name="confirmpassword" id="confirmpassword"  value="{{ $data->confirmpassword ?? '' }}" placeholder="Confirm New Password" required>
+        <input type="password" name="confirmpassword" id="confirmpassword" value="{{ $data->confirmpassword ?? '' }}" placeholder="Confirm New Password" required>
         <i class='bx bxs-lock' id="lock-icon-confirm"></i>
       </div>
       <button type="submit" class="btn">Submit</button>
