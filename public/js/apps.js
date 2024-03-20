@@ -10,6 +10,21 @@ const topAlert = Swal.mixin({
   }
 });
 
+const confirmAlert2 = Swal.mixin({
+  toast: true,
+  position: 'top',
+  showConfirmButton: false,
+  showConfirmButton: true,
+  confirmButtonColor: '#EA8426',
+  showCancelButton: false,
+  allowEscapeKey: false,
+  allowOutsideClick: false,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+
 const loadAlert = Swal.mixin({
   toast: true,
   position: 'top',
@@ -111,7 +126,7 @@ $(document).on('keypress', '[name=name]', (e) => {
   return pattern.test(value);
 });
 
-$(document).on('blur', '[name=email]', (e) => {
+$(document).on('blur', '[name=email],[name=emailReg]', (e) => {
   if (!validEmail.test($(e.currentTarget).val()) && $(e.currentTarget).val()) {
     topAlert.fire({
       icon: 'error',
@@ -364,7 +379,7 @@ $(document).on('click', '[name=contact]', (e) => {
   // $(e.currentTarget).select();
 });
 
-$(document).on('keypress', '[name=contact]', (e) => {
+$(document).on('keypress', '[name=contact],.otp-input', (e) => {
   var value = String.fromCharCode(e.which ? e.which : e.keyCode);
   var pattern = /^[0-9]$/;
   return pattern.test(value);
@@ -509,15 +524,15 @@ $(document).on('click', '#register,#login,#forgot_password', (e) => {
   });
 
   switch ($(e.currentTarget).attr('id')) {
-    case 'forgot_password':
-      location.href = 'forgotpassword';
-      break;
-    case 'register':
-      location.href = 'register';
-      break;
-    default:
-      location.href = 'home';
-      break;
+  case 'forgot_password':
+    location.href = 'forgotpassword';
+    break;
+  case 'register':
+    location.href = 'register';
+    break;
+  default:
+    location.href = 'home';
+    break;
   }
 });
 
@@ -535,10 +550,51 @@ $(document).on('keyup', '.otp-input', (e) => {
   else if ($(e.currentTarget).val() != '') $(e.currentTarget).next().focus();
 });
 
-$(document).on('keyup', '#emailReg', (e) => {
-  if (validEmail.test($(e.currentTarget).val()) && $(e.currentTarget).val()) {
-    $('.otp-wrapper').css({ 'display': 'flex' });
+$(document).on('click', '#verfiyEmail', (e) => {
+  $('#emailConfirm').show();
+  const emailInput = $(e.currentTarget).closest('div').find('#emailReg');
+  if (!validEmail.test(emailInput.val()) && !emailInput.val()) {
+    topAlert.fire({
+      icon: 'error',
+      title: 'Invalid!',
+      text: 'Email Address.'
+    });
+    $(emailInput).focus();
   } else {
-    $('.otp-wrapper').css({ 'display': 'none' });
+    const timerSpan = $(e.currentTarget).parent().parent().parent().parent().parent().find('.otp-wrapper').find('.otp-container').find('span');
+    $(timerSpan).html('3:00');
+    var timer2 = "0:05";
+    var interval = setInterval(function() {
+      var timer = timer2.split(':');
+      var minutes = parseInt(timer[0], 10);
+      var seconds = parseInt(timer[1], 10);
+      --seconds;
+      minutes = (seconds < 0) ? --minutes : minutes;
+      if (minutes < 0) clearInterval(interval);
+      seconds = (seconds < 0) ? 59 : seconds;
+      seconds = (seconds < 10) ? '0' + seconds : seconds;
+      $(timerSpan).html(minutes + ':' + seconds);
+      timer2 = minutes + ':' + seconds;
+      if (timer2 == '0:00') {
+        clearInterval(interval);
+        $('#emailConfirm').hide();
+        confirmAlert2.fire({
+          icon: 'warning',
+          title: 'Oops!',
+          text: 'Your time is up, please verify again.'
+        }).then((result) => {
+          if (result.isConfirmed) $('.otp-wrapper').css({ 'display': 'none' });      
+        });
+      }
+    }, 1000);
+    $('.otp-wrapper').css({ 'display': 'flex' });
+    $(e.currentTarget).parent().parent().parent().parent().parent().find('.otp-wrapper').find('.otp-container').find('.otp-input-container').find('input').first().focus();
   }
+});
+
+$(document).on('click', '#closeOTP', (e) => {
+  $('.otp-input').each((index, input)=>{
+    $(input).val('');
+  });
+  $('.otp-wrapper').css({ 'display': 'none' });
 });

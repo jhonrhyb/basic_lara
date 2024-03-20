@@ -104,7 +104,7 @@ h1 {
   }
 } */
 
-.wrapper .input-box {
+.wrapper .input-box, .wrapper .input-box-email {
   position: relative;
   width: 100%;
   height: 50px;
@@ -137,6 +137,81 @@ h1 {
   font-size: 20px;
   color: #FDB032;
   transition: all .55s ease;
+}
+
+.input-box-email-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 0;
+  cursor: url('../cursor/text2.png'), auto;
+}
+
+.input-box-email-input input {
+  width: 85%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  left: 0;
+  border: none;
+  outline: none;
+  margin: 0;
+  border: none;
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+  cursor: url('../cursor/text2.png'), auto;
+}
+
+.input-box-email-input input::placeholder {
+  color: #61677A;
+}
+
+.otp-wrapper .otp-container i {
+  position: absolute;
+  background: #fff;
+  right: 10px;
+  top: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FDB032;
+  transition: all .55s ease;
+}
+
+.otp-wrapper .otp-container i {
+  cursor: url('../cursor/button.png'), auto;
+  transform: scaleX(1.1);
+}
+
+.input-box-email-input button {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  width: 80px;
+  height: 35px;
+  background: #EA8426;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  transition: all .25s ease;
+}
+
+.input-box-email-input button:hover {
+  border: 2px solid #EA8426;
+  background-color: transparent;
+  cursor: url('../cursor/button.png'), auto;
+  transform: scaleX(1.1);
 }
 
 .bxs-lock:hover {
@@ -532,6 +607,7 @@ h1 {
 
 .otp-wrapper .otp-container {
   background-color: #fff;
+  border-radius: 10px;
   width: 540px;
   height: 320px;
   padding: 15px;

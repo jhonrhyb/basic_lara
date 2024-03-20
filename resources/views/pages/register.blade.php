@@ -26,9 +26,12 @@
         <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" required>
         <i class='bx bxs-lock' id="lock-icon-confirm"></i>
       </div>
-      <div class="input-box">
-        <input type="email" name="emailReg" id="emailReg" placeholder="Email Address" required autofocus>
-        <!-- <i class='bx bxs-user'></i> -->
+      <div class="input-box-email">
+        <div class="input-box-email-input">
+          <input type="email" name="emailReg" id="emailReg" placeholder="Email Address" required autofocus>
+          <button type="button" id="verfiyEmail">Verify</button>
+          <!-- <i class='bx bxs-user'></i> -->
+        </div>
       </div>
       <button type="submit" class="btn">Submit</button>
       <div class="register-link">
@@ -38,9 +41,10 @@
   </div>
   <div class="otp-wrapper">
     <div class="otp-container">
+      <i class="bx bx-x bx-border" id="closeOTP"></i>
       <h1>OTP Verfication</h1>
       <p>Enter the OTP sent to your registered email</p>
-      <span>60</span>
+      <span></span>
       <div class="otp-input-container">
         <input type="text" class="otp-input" maxlength="1">
         <input type="text" class="otp-input" maxlength="1">
@@ -49,7 +53,7 @@
         <input type="text" class="otp-input" maxlength="1">
         <input type="text" class="otp-input" maxlength="1">
       </div>
-      <input type="button" class="btn" value="Confirm">
+      <input type="button" class="btn" id="emailConfirm" value="Confirm">
     </div>
   </div>
 </body>
