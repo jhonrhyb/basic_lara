@@ -558,7 +558,7 @@ $(document).on('click', '#verfiyEmail', (e) => {
       if (minutes < 0) clearInterval(interval);
       seconds = (seconds < 0) ? 59 : seconds;
       seconds = (seconds < 10) ? '0' + seconds : seconds;
-      $(timerSpan).html(minutes + ':' + seconds);
+      $(timerSpan).html(minutes + ':' + seconds).fadeIn();
       timer2 = minutes + ':' + seconds;
       if (timer2 == '0:00') {
         clearInterval(interval);
