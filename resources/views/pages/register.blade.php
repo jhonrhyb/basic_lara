@@ -39,7 +39,7 @@
       </div>
     </form>
   </div>
-  <div class="otp-wrapper">
+  <div class="otp-wrapper" hidden>
     <div class="otp-container">
       <i class="bx bx-x bx-border" id="closeOTP"></i>
       <h1>OTP Verfication</h1>

@@ -509,15 +509,15 @@ $(document).on('click', '#register,#login,#forgot_password', (e) => {
   });
 
   switch ($(e.currentTarget).attr('id')) {
-  case 'forgot_password':
-    location.href = 'forgotpassword';
-    break;
-  case 'register':
-    location.href = 'register';
-    break;
-  default:
-    location.href = 'home';
-    break;
+    case 'forgot_password':
+      location.href = 'forgotpassword';
+      break;
+    case 'register':
+      location.href = 'register';
+      break;
+    default:
+      location.href = 'home';
+      break;
   }
 });
 
@@ -536,6 +536,8 @@ $(document).on('keyup', '.otp-input', (e) => {
 });
 
 $(document).on('click', '#verfiyEmail', (e) => {
+  const timerSpan = $(e.currentTarget).parent().parent().parent().parent().parent().find('.otp-wrapper').find('.otp-container').find('span');
+  $(timerSpan).html('3:00');
   $('#emailConfirm').show();
   const emailInput = $(e.currentTarget).closest('div').find('#emailReg');
   if (!validEmail.test(emailInput.val()) && !emailInput.val()) {
@@ -546,10 +548,8 @@ $(document).on('click', '#verfiyEmail', (e) => {
     });
     $(emailInput).focus();
   } else {
-    const timerSpan = $(e.currentTarget).parent().parent().parent().parent().parent().find('.otp-wrapper').find('.otp-container').find('span');
-    $(timerSpan).html('3:00');
     var timer2 = "3:00";
-    var interval = setInterval(function() {
+    var interval = setInterval(function () {
       var timer = timer2.split(':');
       var minutes = parseInt(timer[0], 10);
       var seconds = parseInt(timer[1], 10);
@@ -572,7 +572,7 @@ $(document).on('click', '#verfiyEmail', (e) => {
           allowEscapeKey: false,
           allowOutsideClick: false,
         }).then((result) => {
-          if (result.isConfirmed) $('.otp-wrapper').css({ 'display': 'none' });      
+          if (result.isConfirmed) $('.otp-wrapper').css({ 'display': 'none' });
         });
       }
     }, 1000);
@@ -582,8 +582,8 @@ $(document).on('click', '#verfiyEmail', (e) => {
 });
 
 $(document).on('click', '#closeOTP', (e) => {
-  $('.otp-input').each((index, input)=>{
+  $('.otp-input').each((index, input) => {
     $(input).val('');
   });
-  $('.otp-wrapper').css({ 'display': 'none' });
+  $('.otp-wrapper').hide();
 });
