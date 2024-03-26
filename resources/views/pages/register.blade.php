@@ -26,7 +26,7 @@
         <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" required>
         <i class='bx bxs-lock' id="lock-icon-confirm"></i>
       </div>
-      <div class="input-box-email">
+      <div class="input-box-email" hidden>
         <div class="input-box-email-input">
           <input type="email" name="emailReg" id="emailReg" placeholder="Email Address" required autofocus>
           <button type="button" id="verfiyEmail">Verify</button>
@@ -39,7 +39,7 @@
       </div>
     </form>
   </div>
-  <div class="otp-wrapper" hidden>
+  <div class="otp-wrapper">
     <div class="otp-container">
       <i class="bx bx-x bx-border" id="closeOTP"></i>
       <h1>OTP Verfication</h1>
