@@ -26,13 +26,12 @@
         <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" required>
         <i class='bx bxs-lock' id="lock-icon-confirm"></i>
       </div>
-      <div class="input-box-email" hidden>
+      <!-- <div class="input-box-email">
         <div class="input-box-email-input">
           <input type="email" name="emailReg" id="emailReg" placeholder="Email Address" required autofocus>
           <button type="button" id="verfiyEmail">Verify</button>
-          <!-- <i class='bx bxs-user'></i> -->
         </div>
-      </div>
+      </div> -->
       <button type="submit" class="btn">Submit</button>
       <div class="register-link">
         <p>Do you have an account? <a href="#" id="login">Login</a></p>
